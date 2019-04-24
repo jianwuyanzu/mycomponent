@@ -95,6 +95,7 @@ export default {
 .choseFiles_body{
     display: flex;
     flex-wrap: wrap;
+    margin: 8px;
     .fileList{
         position: relative;
         // width: 33%;

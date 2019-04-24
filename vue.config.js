@@ -1,14 +1,19 @@
 const path = require('path');
 
 module.exports = {
-    baseUrl: '/',
+    baseUrl: './',
+    // publicPath: './',
     // 多页面应用配置
+    productionSourceMap: false,
     pages: {
         index: {
             entry: 'examples/main.js',
             template: 'public/index.html',
             filename: 'index.html'
         }
+    },
+    css: {
+        sourceMap: false,
     },
     // 扩展webpack配置，使packages加入配置
     chainWebpack: config => {
