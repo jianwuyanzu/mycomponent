@@ -1,30 +1,32 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
+// layout
+import layout from './layout/layout'
+
 Vue.use(Router)
 
-let router = {
+let data = {
     routes: [
         {
-            path: '/choseFiles',
-            name: 'choseFiles',
-            component: () => import('@/views/choseFiles/choseFiles')
-        },{
-            path:'/escape',
-            name: 'escape',
-            component: () =>import('@/views/escape/escape')
+            path: '/',
+            redirect: '/layout',
         }
     ]
 };
-let routerConfig = new Router(router);
+data.routes.push(...layout);
+
+let router = new Router(data);
 
 // 路由前置守卫
-routerConfig.beforeEach((to, from, next) => {
-    next();
-});
-// 路由后置守卫
-routerConfig.afterEach((to, from) => {
-    
+router.beforeEach((to, from, next) => {
+    // 不认识的路由默认跳登入页 同时设置title
+    if (!to.name) {
+        
+    } else {
+        document.title = to.meta.title
+        next()
+    }
 })
 
-export default routerConfig;
+export default router;

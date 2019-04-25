@@ -1,3 +1,59 @@
+@import './element_ui';
+@import './transition';
+
 body{
-    margin: 0;
+    margin:0;
+	font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+	font-size: 0.875rem;
+    font-weight: normal;
+    line-height: 1.5;
+    color: #263238;
+	min-height: 100vh;
+}
+/*清除原始样式*/
+ul, ol, li,
+dl, dt, dd,
+h1, h2, h3, h4, h5,
+p {
+	margin: 0;
+	padding: 0;
+	list-style: none !important;
+}
+a{text-decoration:none !important}
+input:-webkit-autofill {
+    /* -webkit-box-shadow: 0 0 0px 1000px rgba(255, 255, 255) inset !important; */
+    transition:background-color 5000s ease-in-out 0s;
+}
+
+html {
+    height: 100%;
+    box-sizing: border-box;
+}
+  
+#app{
+    height: 100vh;
+}
+
+// 自定义滚动条样式
+.customScrollbar{
+    overflow-y: hidden;
+    &:hover{
+        overflow: auto;
+    }
+    // 滚动条整体样式
+    &::-webkit-scrollbar{
+        width: 8px;
+        height: 16px;
+        background-color: #F5F5F5;
+    }
+    // 轨道部分
+    &::-webkit-scrollbar-track{
+        border-radius: 10px;
+        background-color: #fff;
+    }
+    // 滑块部分
+    &::-webkit-scrollbar-thumb{
+        border-radius: 10px;
+        background-color: rgb(211, 205, 205);
+    }
 }

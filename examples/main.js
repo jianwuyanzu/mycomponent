@@ -3,14 +3,15 @@ import App from './App.vue'
 import router from './router/router'
 import store from './store/store'
 
-//font-awesome
-import 'font-awesome/css/font-awesome.min.css'
-// 基本设置
-import './common/js/basicSetting'
-// scss
-import '@/common/scss/index.scss'
+// element ui
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+Vue.use(ElementUI)
+
+import 'font-awesome/css/font-awesome.min.css' // font-awesome
+import '@/common/scss/index.scss' // global css
 // vconsole
-import vConsole from 'vconsole'
+// import vConsole from 'vconsole'
 // new vConsole();
 
 // 导入组件库
