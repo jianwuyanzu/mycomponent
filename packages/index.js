@@ -1,11 +1,7 @@
-import choseFiles from './choseFiles'
-import preview from './preview'
 import escape from './escape'
 
 // 存储组件列表
 const components = [
-    choseFiles,
-    preview,
     escape
 ];
 
@@ -29,7 +25,5 @@ export default {
     // 导出的对象必须具有install才能被Vue.use()方法安装
     install,
     // 具体的组件列表
-    choseFiles,
-    preview,
     escape
 }

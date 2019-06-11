@@ -15,6 +15,12 @@ module.exports = {
     css: {
         sourceMap: false,
     },
+    configureWebpack: {
+        //关闭 webpack 的性能提示
+	    performance: {
+		    hints:false
+	    }
+    },
     // 扩展webpack配置，使packages加入配置
     chainWebpack: config => {
         // vue默认@指向src目录，这里修正为examples，另外新增一个~指向packages
@@ -35,7 +41,7 @@ module.exports = {
     // webpack-dev-server选项配置
     devServer: {
         host: '0.0.0.0',
-        port: '888',
+        port: '666',
         open: false,
         hot: true
     }
