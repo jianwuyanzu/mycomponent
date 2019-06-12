@@ -1,8 +1,14 @@
+function find_random(num_one,num_two){
+    return Math.random()*(num_two-num_one)+num_one;
+}
 /**
  * 地图类
  */
 
 class Map {
+    constructor(options){
+        this.style_color = find_random(0,360);
+    }
     // 初始化
     init(options) {
         this.canvas = options.canvas;
@@ -17,7 +23,8 @@ class Map {
     // 渲染地图
     render() {
         this.clear();
-        this.ctx.fillStyle = "black";
+        this.style_color += 0.1;
+        this.ctx.fillStyle = 'hsl('+this.style_color+',100%,97%)';
         this.ctx.fillRect(0, 0, this.width, this.height);
     }
 }

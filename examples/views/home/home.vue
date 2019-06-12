@@ -1,10 +1,6 @@
 <template>
-    <div class="home">
-        <div class="main">
-            <div class="main_head">
-                <background class="main_head_back"></background>
-            </div>
-        </div>
+    <div class="home customScrollbar">
+        <background class="home_back"></background>
     </div>
 </template>
 
@@ -20,19 +16,12 @@ export default {
 <style scoped lang="scss">
 .home{
     text-align: center;
-    .main{
-        width: 80%;
-        min-height: 100vh;
-        height: auto;
-        margin: auto;
-        .main_head{
-            width: 100%;
-            height: 500px;
-            .main_head_back{
-                width: 100%;
-                height: 100%;
-            }
-        }
+    .home_back{
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        left: 0;
+        top: 0;
     }
 }
 </style>

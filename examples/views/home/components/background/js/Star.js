@@ -1,3 +1,6 @@
+function find_random(num_one,num_two){
+    return Math.random()*(num_two-num_one)+num_one;
+}
 /**
  * 闪烁的星星
  */
@@ -11,13 +14,14 @@ class Star extends Point {
         this.startradius = 0.01;                                       // 开始半径
         this.radius = Math.random() * 2 + 1;                        // 半径
         this.radiuschangType = 'add';                                // 半径改变类型
-        this.color = "#ffffff";                                     // 颜色
+        this.color = find_random(0,360);                                     // 颜色
         this.speed = options.speed || Math.random() * 2 + 0.5;      // 速度
         this.angle = 0;                                          // 旋转角度
-        this.r = Math.random() - 0.8;
+        this.r = Math.random() - 0.8;                            // 旋转半径
     }
     // 更新方法
     update() {
+        this.color += 0.1;
         // 圆周运动
         this.r = this.r > 0.1 ? 0.1 : (this.r < -0.1 ? -0.1 : this.r)
         this.x += this.r*Math.cos(this.angle*(Math.PI/180));
@@ -30,12 +34,12 @@ class Star extends Point {
                 this.radiuschangType = 'delete';
             }
         }else if(this.radiuschangType == 'delete'){
-            this.startradius -= 0.01;
+            this.startradius -= 0.02;
             if(this.startradius<0){
                 this.radiuschangType = 'add';
             }
         }else{
-            this.startradius -= 0.01;
+            this.startradius -= 0.02;
         }
 
     }
@@ -43,7 +47,8 @@ class Star extends Point {
     render() {
         var self = this;
         map.ctx.beginPath();
-        map.ctx.fillStyle = self.color;
+        map.ctx.fillStyle = 'hsl('+this.color+',100%,50%)';
+        // map.ctx.fillStyle = '#000000';
         map.ctx.arc(self.x, self.y, self.startradius>0 ? self.startradius : 0 , 0, Math.PI*2, false);
         map.ctx.fill();
     }
