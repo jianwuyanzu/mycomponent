@@ -24,7 +24,7 @@ class Map {
     render() {
         this.clear();
         this.style_color += 0.1;
-        this.ctx.fillStyle = 'hsl('+this.style_color+',100%,10%)';
+        this.ctx.fillStyle = 'hsl('+this.style_color+',100%,97%)';
         this.ctx.fillRect(0, 0, this.width, this.height);
     }
 }

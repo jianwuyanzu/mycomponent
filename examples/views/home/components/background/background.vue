@@ -5,9 +5,13 @@
 <script>
 import map from './js/Map'
 import Star from './js/Star'
+import Meteor from './js/Meteor'
 
 let stars = [];   // 闪烁的星星
 const starsCount = 50;      // 闪烁的星星数量
+
+let meteors = [];   // 流星
+const meteorCount = 3;    //流星数量
 
 const raf = window.requestAnimationFrame
   || window.webkitRequestAnimationFrame
@@ -17,6 +21,8 @@ const raf = window.requestAnimationFrame
   || function(callback) {
     window.setTimeout(callback, 1000 / 60);
   };
+
+const cancelRaf = (id) => window.cancelAnimationFrame(id);
 
 export default {
     methods: {
@@ -44,10 +50,20 @@ export default {
                 stars.push(new Star({x, y, xa, ya}));
             }
         },
+        // 添加流星
+        createMeteor(count){
+            meteors = [];
+            for (let i = 0; i < count; i++) {
+                const x = Math.random() * map.width + map.width;
+                const y = Math.random() * map.height;
+                meteors.push(new Meteor({x, y}));
+            }
+        },
         // 所有数据初始化
         dataInit(){
             this.backInit();
             this.createstars(starsCount);
+            this.createMeteor(meteorCount);
         },
         // 开始动画
         startAnimat(){
@@ -60,10 +76,17 @@ export default {
                 stars[i].update();
             }
 
-            raf(this.startAnimat);
+            // 流星渲染
+            for(let i=0; i<meteors.length; i++){
+                meteors[i].render();
+                meteors[i].update();
+            }
+
+            sessionStorage.animationID = raf(this.startAnimat);
         }
     },
     mounted(){
+        cancelRaf(sessionStorage.animationID);
         this.dataInit();
         this.startAnimat();
     }

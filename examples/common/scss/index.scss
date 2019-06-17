@@ -37,6 +37,7 @@ html {
 // 自定义滚动条样式
 .customScrollbar{
     overflow-y: hidden;
+    // overflow: auto;
     &:hover{
         overflow: auto;
     }
@@ -56,4 +57,22 @@ html {
         border-radius: 10px;
         background-color: rgb(211, 205, 205);
     }
+}
+
+// 字体
+@font-face{
+    font-family: 'warhelioscondc-webfont';
+    src: url('./fontFamily/warhelioscondc-webfont.woff');
+}
+@font-face{
+    font-family: 'warhelioscondcbold-webfont';
+    src: url('./fontFamily/warhelioscondcbold-webfont.woff');
+}
+@font-face{
+    font-family: 'wg-stencil-d';
+    src: url('./fontFamily/wg-stencil-d.woff');
+}
+@font-face{
+    font-family: 'wg-stencil';
+    src: url('./fontFamily/wg-stencil.woff');
 }
