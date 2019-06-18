@@ -54,7 +54,6 @@ export default {
     methods: {
         // 地图初始化
         mapInit(){
-            console.log('111')
             const canvas = this.$refs.canvas;
             canvas.width = canvas.clientWidth;
             canvas.height = canvas.clientHeight;
