@@ -25,13 +25,13 @@ let router = new Router(data);
 // 路由前置守卫
 router.beforeEach((to, from, next) => {
     // 不认识的路由默认跳登入页 同时设置title
-    if (!to.name) {
+    if (to.meta.title) {
+        document.title = to.meta.title
+        next()
+    } else {
         router.push({
             name: '404'
         })
-    } else {
-        document.title = to.meta.title
-        next()
     }
 })
 

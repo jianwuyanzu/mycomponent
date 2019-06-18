@@ -40,9 +40,19 @@ export default {
     height: 100%;
     .el-aside{
         width: auto !important;
+        height: 100%;
     }
     .el-header{
         padding: 0;
+    }
+    .el-main{
+        background-color: #f5f5f5;
+        >div{
+            height: auto;
+            min-height: calc(100vh - 96px);
+            display: flex;
+            flex-direction: column;
+        }
     }
 }
 </style>

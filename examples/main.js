@@ -18,6 +18,7 @@ import '@/common/scss/index.scss' // global css
 import hehecomponent from '~/index'
 Vue.use(hehecomponent);
 
+
 Vue.config.productionTip = false
 
 new Vue({

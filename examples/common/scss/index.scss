@@ -34,17 +34,22 @@ html {
     height: 100vh;
 }
 
+h3{
+    font-weight: 400;
+    font-size: 22px;
+}
+
 // 自定义滚动条样式
 .customScrollbar{
-    overflow-y: hidden;
-    // overflow: auto;
+    // overflow-y: hidden;
+    overflow: auto;
     &:hover{
-        overflow: auto;
+        // overflow: auto;
     }
     // 滚动条整体样式
     &::-webkit-scrollbar{
         width: 8px;
-        height: 16px;
+        height: 8px;
         background-color: #F5F5F5;
     }
     // 轨道部分
@@ -75,4 +80,9 @@ html {
 @font-face{
     font-family: 'wg-stencil';
     src: url('./fontFamily/wg-stencil.woff');
+}
+
+// 字号
+.FS18{
+    font-size: 18px;
 }

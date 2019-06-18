@@ -4,7 +4,7 @@ let route = [
         name: 'home',
         component: () => import('@/views/home/home'),
         meta: {
-            title: 'home'
+            title: 'welcome'
         },
         children: []
     }

@@ -1,45 +1,16 @@
-let qiyeguanli = [
+let sideBar = [
     {
-        title: '首页',
-        name: 'homePage',
-        path: '/layout/homePage',
-        icon: 'fa-hospital-o',
+        title: 'h5GAME',
+        name: 'h5GAME',
+        path: '/layout/h5GAME',
+        icon: 'fa-gamepad',
         children: [
             {
-                title: '首页',
-                name: 'homePage',
-                path: '/layout/homePage'
+                title: '粒子逃脱',
+                name: 'escape',
+                path: '/layout/h5GAME/escape'
             }
         ]
-    }, {
-        title: '个人',
-        name: 'user',
-        path: '/layout/user',
-        icon: 'fa-user-o',
-        children: [
-            {
-                title: '个人',
-                name: 'user',
-                path: '/layout/user'
-            }
-        ]
-    }, {
-        title: '设置',
-        name: 'setting',
-        path: '/layout/setting',
-        icon: 'fa-cogs',
-        children: [
-            {
-                title: '设置',
-                name: 'setting',
-                path: '/layout/setting'
-            }
-        ]
-    }, 
+    }
 ]
-
-// let qiyeguanli = [];
-
-// qiyeguanli.push(...sideBar)
-// console.log(qiyeguanli)
-export default qiyeguanli;
+export default sideBar;

@@ -39,6 +39,8 @@ const raf = window.requestAnimationFrame
     window.setTimeout(callback, 1000 / 60);
   };
 
+const cancelRaf = (id) => window.cancelAnimationFrame(id);
+
 export default {
     name: 'escape',
     data(){
@@ -52,6 +54,7 @@ export default {
     methods: {
         // 地图初始化
         mapInit(){
+            console.log('111')
             const canvas = this.$refs.canvas;
             canvas.width = canvas.clientWidth;
             canvas.height = canvas.clientHeight;
@@ -107,7 +110,7 @@ export default {
                     enemys[i].render();
                     enemys[i].update();
                 }
-                raf(animate);
+                sessionStorage.animationID = raf(animate);
             })();
         },
         // 计时器
@@ -210,7 +213,7 @@ export default {
             skillPoint.render();
             skillPoint.update();
 
-            raf(this.gameStartAnimate);
+            sessionStorage.animationID = raf(this.gameStartAnimate);
         },
         // 碰撞检测
         collision(enemy, player){
@@ -226,6 +229,7 @@ export default {
         }
     },
     mounted(){
+        cancelRaf(sessionStorage.animationID);
         this.mapInit();
         this.beforeAnimate();
     }

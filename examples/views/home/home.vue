@@ -8,29 +8,21 @@
             active-text="简历版"
             inactive-text="交友版（相亲版）">
         </el-switch>
-        <div class="main main_jl" :class="{active: homeType}">
-            <div class="us">
-                <div class="info">
-                    <p>姓名：<span>janwuyanzu</span></p>
-                    <p>年龄：<span>24</span>岁</p>
-                    <p>所在城市：<span>上海</span></p>
-                </div>
-                <div class="head">
+        <div class="main main_xq" :class="{active: !homeType}">
+            <div>
+                <div class='myInfo'>
+                    <div class="info">
+                        <p>name：<span>jianwuyanzu</span></p>
+                        <p>age：<span>24</span></p>
+                        <p>city：<span>shanghai</span></p>
+                    </div>
                     <img src="./img/head.png">
                 </div>
             </div>
         </div>
-        <div class="main main_xq" :class="{active: !homeType}">
-            <div class="us">
-                <div class="info">
-                    <p>姓名：<span>janwuyanzu</span></p>
-                    <p>年龄：<span>24</span>岁</p>
-                    <p>所在城市：<span>上海</span></p>
-                </div>
-                <div class="head">
-                    <img src="./img/head.png">
-                </div>
-            </div>
+        <div class="main main_jl" :class="{active: homeType}">
+            <el-button type="primary" :disabled="true">下载简历(pdf)</el-button>
+            <el-button type="primary" @click="goLayout">轮子厂</el-button>
         </div>
     </div>
 </template>
@@ -42,7 +34,14 @@ export default {
     },
     data(){
         return {
-            homeType: false
+            homeType: true
+        }
+    },
+    methods: {
+        goLayout(){
+            this.$router.push({
+                name: 'layout'
+            })
         }
     }
 }
@@ -68,46 +67,43 @@ export default {
     .main{
         overflow: hidden;
         transition: all 1s;
-
+        padding-top: 50px;
+        box-sizing: border-box;
         width: 80vw;
         // background-color: #ffffff;
         margin: auto;
-        height: 0px;
         min-height: 0px;
+        max-height: 0px;
         &.active{
-            height: auto;
             min-height: 100vh;
+            max-height: 100vh;
         }
-        .us{
-            // color: #ffffff;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            font-size: 25px;
-            padding-top: 20px;
-            width: 50%;
-            margin: auto;
-            // height: 200vh;
-            .info{
-                font-family: wg-stencil;
-                text-align: left;
-            }
-            .head{
-                width: 100px;
-                height: 100px;
+        &.main_xq{
+            .myInfo{
                 display: flex;
                 align-items: center;
-                img{
-                    width: 100%;
+                justify-content: space-between;
+                width: 50%;
+                margin: auto;
+                transition: all 1s;
+                padding: 20px;
+                border-radius: 20px;
+                &:hover{
+                    background: rgba(0, 0, 0, 0.5);
+                }
+                .info{
+                    font-family: wg-stencil;
+                    font-size: 25px;
+                    text-align: left;
+                }
+                >img{
+                    width: 200px;
                 }
             }
         }
-    }
-    .main_jl{
-        
-    }
-    .main_xq{
-        
+        &.main_jl{
+            
+        }
     }
 }
 </style>
