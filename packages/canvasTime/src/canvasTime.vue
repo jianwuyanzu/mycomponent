@@ -57,6 +57,10 @@ export default {
             type: String,
             default: () => '#666600'
         },
+        clockHand_secType: {
+            type: Boolean,
+            default: () => true
+        },
         // 具体时间数据
         timeAdd_color: {
             type: String,
@@ -116,6 +120,7 @@ export default {
                 clockHand_color: this.clockHand_color,
                 clockHand_point_color: this.clockHand_point_color,
                 size: this.size,
+                clockHand_secType: this.clockHand_secType
             })
         },
         // 具体时间初始化
@@ -123,7 +128,9 @@ export default {
             timeAdd.init({
                 timeAdd_color: this.timeAdd_color,
                 time_24h: this.time_24h,
-                size: this.size
+                size: this.size,
+                x: this.size/2,
+                y: this.size/1.7
             })
         },
         // 具体日期初始化
@@ -131,6 +138,8 @@ export default {
             dateAdd.init({
                 size: this.size,
                 dateAdd_color: this.dateAdd_color,
+                x: this.size/2,
+                y: this.size/1.5
             })
         },
         // 所有数据渲染
@@ -151,7 +160,7 @@ export default {
         clock_conti(){
             clockHand.render();
             timeAdd.render();
-            dateAdd.render()
+            dateAdd.render();
         },
     },
     mounted(){

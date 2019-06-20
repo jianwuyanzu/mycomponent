@@ -11,9 +11,16 @@ class DateAdd{
         this.size = options.size;
         this.dateAdd_color = options.dateAdd_color;
         this.lineWidth = this.size/100 > 1 ? this.size/100 : 1;
+        this.x = options.x;
+        this.y = options.y;
     }
     // 渲染
-    render(){
+    render(data){
+        if(data && data.x && data.y){
+            this.x = data.x;
+            this.y = data.y;
+        }
+
         let now = new Date();
         let day = now.getDate();
         let month = now.getMonth()+1;
@@ -27,8 +34,8 @@ class DateAdd{
         map.ctx.textBaseline = "middle";
         map.ctx.textAlign = "center";
         map.ctx.font = this.size/20+"px Arial";
-        map.ctx.fillText(`${year}/${month}/${day}`, this.size/2, this.size/1.5);
-        map.ctx.fillText(day_arr[now.getDay()], this.size/2, this.size/1.4);
+        map.ctx.fillText(`${year}/${month}/${day}`, this.x, this.y);
+        map.ctx.fillText(day_arr[now.getDay()], this.x, this.y + 11);
     }
 }
 

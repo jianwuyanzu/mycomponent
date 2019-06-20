@@ -8,6 +8,7 @@ class ClockHand{
     init(options){
         this.clockHand_color = options.clockHand_color;
         this.clockHand_point_color = options.clockHand_point_color;
+        this.clockHand_secType = options.clockHand_secType;
         this.size = options.size;
         this.lineWidth = this.size/100 > 1 ? this.size/100 : 1;
     }
@@ -66,18 +67,22 @@ class ClockHand{
     }
     // 秒针渲染
     render_sec(hour, min, sec, milisec){
+        let speed = sec;
+        if(this.clockHand_secType){
+            speed = sec+milisec/1000;
+        }
         map.ctx.lineWidth = this.lineWidth-1;
         map.ctx.fillStyle = this.clockHand_color;
         map.ctx.strokeStyle = this.clockHand_color;
         map.ctx.beginPath();
         map.ctx.moveTo((this.size/2), (this.size/2));
-        map.ctx.arc((this.size/2), (this.size/2), this.size/3, ((2*Math.PI)/360)*((sec+milisec/1000)-15)*6, ((2*Math.PI)/360)*((sec+milisec/1000)-15)*6, 0);
+        map.ctx.arc((this.size/2), (this.size/2), this.size/3, ((2*Math.PI)/360)*(speed-15)*6, ((2*Math.PI)/360)*(speed-15)*6, 0);
         map.ctx.stroke();
         map.ctx.closePath();
 
         map.ctx.beginPath();
         map.ctx.moveTo((this.size/2), (this.size/2));
-        map.ctx.arc((this.size/2), (this.size/2), this.size/15, ((2*Math.PI)/360)*((sec+milisec/1000)+15)*6, ((2*Math.PI)/360)*((sec+milisec/1000)+15)*6, 0);
+        map.ctx.arc((this.size/2), (this.size/2), this.size/15, ((2*Math.PI)/360)*(speed+15)*6, ((2*Math.PI)/360)*(speed+15)*6, 0);
         map.ctx.stroke();
         map.ctx.closePath();
     }
