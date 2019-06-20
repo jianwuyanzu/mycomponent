@@ -8,7 +8,7 @@
 export default {
   name: 'App',
   mounted(){
-      console.log(process.env.API_ROOT)
+    //   console.log(process.env.API_ROOT)
   }
 }
 </script>

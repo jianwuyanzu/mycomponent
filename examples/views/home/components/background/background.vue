@@ -13,6 +13,8 @@ const starsCount = 50;      // 闪烁的星星数量
 let meteors = [];   // 流星
 const meteorCount = 3;    //流星数量
 
+let animationID = '';
+
 const raf = window.requestAnimationFrame
   || window.webkitRequestAnimationFrame
   || window.mozRequestAnimationFrame
@@ -82,13 +84,15 @@ export default {
                 meteors[i].update();
             }
 
-            sessionStorage.animationID = raf(this.startAnimat);
+            animationID = raf(this.startAnimat);
         }
     },
     mounted(){
-        cancelRaf(sessionStorage.animationID);
         this.dataInit();
         this.startAnimat();
+    },
+    destroyed(){
+        cancelRaf(animationID);
     }
 }
 </script>

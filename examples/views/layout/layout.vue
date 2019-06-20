@@ -49,7 +49,7 @@ export default {
         background-color: #f5f5f5;
         >div{
             height: auto;
-            min-height: calc(100vh - 96px);
+            min-height: calc(100vh - 100px);
             display: flex;
             flex-direction: column;
         }

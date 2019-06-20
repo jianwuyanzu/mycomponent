@@ -26,6 +26,13 @@ let route = [
                         }
                     }
                 ]
+            },{
+                path: '/layout/canvasTime',
+                name: 'canvasTime',
+                component: () => import('@/views/layout/canvasTime/canvasTime'),
+                meta: {
+                    title: 'canvas时钟'
+                },
             }
         ]
     }

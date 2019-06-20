@@ -29,6 +29,8 @@ let enemys = [];            // 红色粒子
 const enemyCount = 30;      // 红色粒子数量
 let skillPoint;             // 技能粒子
 
+let animationID = '';
+
 
 const raf = window.requestAnimationFrame
   || window.webkitRequestAnimationFrame
@@ -109,7 +111,7 @@ export default {
                     enemys[i].render();
                     enemys[i].update();
                 }
-                sessionStorage.animationID = raf(animate);
+                animationID = raf(animate);
             })();
         },
         // 计时器
@@ -212,7 +214,7 @@ export default {
             skillPoint.render();
             skillPoint.update();
 
-            sessionStorage.animationID = raf(this.gameStartAnimate);
+            animationID = raf(this.gameStartAnimate);
         },
         // 碰撞检测
         collision(enemy, player){
@@ -228,10 +230,13 @@ export default {
         }
     },
     mounted(){
-        cancelRaf(sessionStorage.animationID);
         this.mapInit();
         this.beforeAnimate();
+    },
+    destroyed(){
+        cancelRaf(animationID);
     }
+    
 }
 </script>
 

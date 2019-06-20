@@ -1,5 +1,11 @@
 let sideBar = [
     {
+        title: 'canvas时钟',
+        name: 'canvasTime',
+        path: '/layout/canvasTime',
+        icon: 'fa-clock-o',
+        children: []
+    },{
         title: 'h5GAME',
         name: 'h5GAME',
         path: '/layout/h5GAME',
@@ -11,6 +17,6 @@ let sideBar = [
                 path: '/layout/h5GAME/escape'
             }
         ]
-    }
+    },
 ]
 export default sideBar;

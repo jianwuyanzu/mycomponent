@@ -1,8 +1,10 @@
 import escape from './escape'
+import canvasTime from './canvasTime'
 
 // 存储组件列表
 const components = [
-    escape
+    escape,
+    canvasTime
 ];
 
 // 定义install方法，接收vue作为参数，如果使用use注册插件，所有的组件都被注册
@@ -25,5 +27,6 @@ export default {
     // 导出的对象必须具有install才能被Vue.use()方法安装
     install,
     // 具体的组件列表
-    escape
+    escape,
+    canvasTime
 }
