@@ -11,9 +11,16 @@ class ClockHand{
         this.clockHand_secType = options.clockHand_secType;
         this.size = options.size;
         this.lineWidth = this.size/100 > 1 ? this.size/100 : 1;
+        this.clockHand_type = options.clockHand_type;
     }
     // 渲染
-    render(){
+    render(data){
+        if(data){
+            if(data.border){
+                this.border = data.border;
+            }
+        }
+        
         let now = new Date();
         let milisec = now.getMilliseconds();
         let sec = now.getSeconds();
@@ -45,8 +52,12 @@ class ClockHand{
         map.ctx.fillStyle = this.clockHand_color;
         map.ctx.strokeStyle = this.clockHand_color;
         map.ctx.beginPath();
-        map.ctx.moveTo((this.size/2), (this.size/2));
-        map.ctx.arc((this.size/2), (this.size/2), this.size/4, ((2*Math.PI)/360)*((hour+min/60)-3)*30, ((2*Math.PI)/360)*((hour+min/60)-3)*30, 0);
+        switch(this.clockHand_type){
+            case 'none': map.ctx.moveTo((this.size/2), (this.size/2));
+            map.ctx.arc((this.size/2), (this.size/2), this.size/4, ((2*Math.PI)/360)*((hour+min/60)-3)*30, ((2*Math.PI)/360)*((hour+min/60)-3)*30, 0);break;
+            case 'border': map.ctx.arc((this.size/2), (this.size/2), this.size/4, ((2*Math.PI)/360)*(0-3)*30, ((2*Math.PI)/360)*((hour+min/60)-3)*30, 0);
+            map.ctx.lineTo((this.size/2), (this.size/2));break;
+        }
         map.ctx.stroke();
         map.ctx.closePath();
     }
@@ -60,8 +71,12 @@ class ClockHand{
         map.ctx.fillStyle = this.clockHand_color;
         map.ctx.strokeStyle = this.clockHand_color;
         map.ctx.beginPath();
-        map.ctx.moveTo((this.size/2), (this.size/2));
-        map.ctx.arc((this.size/2), (this.size/2), this.size/3, ((2*Math.PI)/360)*((min+sec/60)-15)*6, ((2*Math.PI)/360)*((min+sec/60)-15)*6, 0);
+        switch(this.clockHand_type){
+            case 'none': map.ctx.moveTo((this.size/2), (this.size/2));
+            map.ctx.arc((this.size/2), (this.size/2), this.size/3.4, ((2*Math.PI)/360)*((min+sec/60)-15)*6, ((2*Math.PI)/360)*((min+sec/60)-15)*6, 0);break;
+            case 'border': map.ctx.arc((this.size/2), (this.size/2), this.size/3.4, ((2*Math.PI)/360)*(0-15)*6, ((2*Math.PI)/360)*((min+sec/60)-15)*6, 0);
+            map.ctx.lineTo((this.size/2), (this.size/2));break;
+        }
         map.ctx.stroke();
         map.ctx.closePath();
     }
@@ -75,8 +90,12 @@ class ClockHand{
         map.ctx.fillStyle = this.clockHand_color;
         map.ctx.strokeStyle = this.clockHand_color;
         map.ctx.beginPath();
-        map.ctx.moveTo((this.size/2), (this.size/2));
-        map.ctx.arc((this.size/2), (this.size/2), this.size/3, ((2*Math.PI)/360)*(speed-15)*6, ((2*Math.PI)/360)*(speed-15)*6, 0);
+        switch(this.clockHand_type){
+            case 'none': map.ctx.moveTo((this.size/2), (this.size/2));
+            map.ctx.arc((this.size/2), (this.size/2), this.size/3, ((2*Math.PI)/360)*(speed-15)*6, ((2*Math.PI)/360)*(speed-15)*6, 0);break;
+            case 'border': map.ctx.arc((this.size/2), (this.size/2), this.size/3, ((2*Math.PI)/360)*(0-15)*6, ((2*Math.PI)/360)*(speed-15)*6, 0);
+            map.ctx.lineTo((this.size/2), (this.size/2));break;
+        }
         map.ctx.stroke();
         map.ctx.closePath();
 

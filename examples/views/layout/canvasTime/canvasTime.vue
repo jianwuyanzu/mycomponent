@@ -25,8 +25,11 @@
         </el-card>
 
         <el-dialog title="示例" :visible.sync="modal">
-            <div class="escapeModal">
-                <canvas-time :indicate="true"></canvas-time>
+            <div class="modal">
+                <div>
+                    <span>conti</span>
+                    <canvas-time></canvas-time>
+                </div>
             </div>
             <!-- <span slot="footer" class="dialog-footer">
                 <el-button @click="escapeModal = false">取 消</el-button>
@@ -70,6 +73,12 @@ export default {
                 type: 'string',
                 optional: '',
                 default: '#333333'
+            },{
+                attr: 'clockHand_type',
+                des: '表针类型',
+                type: 'string',
+                optional: 'none/border',
+                default: 'none'
             },{
                 attr: 'clockHand_color',
                 des: '表针颜色',
@@ -126,6 +135,9 @@ export default {
     }
     .el-table{
         margin-bottom: 20px;
+    }
+    .modal{
+        display: flex;
     }
 }
 </style>

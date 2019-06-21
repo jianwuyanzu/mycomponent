@@ -12,12 +12,20 @@ class TimeAdd{
         this.lineWidth = this.size/100 > 1 ? this.size/100 : 1;
         this.x = options.x;
         this.y = options.y;
+        this.fontSize = this.size/15;
     }
     // 渲染
     render(data){
-        if(data && data.x && data.y){
-            this.x = data.x;
-            this.y = data.y;
+        if(data){
+            if(data.x){
+                this.x = data.x;
+            }
+            if(data.y){
+                this.y = data.y;
+            }
+            if(data.fontSize){
+                this.fontSize = data.fontSize
+            }
         }
 
         let now = new Date();
@@ -33,7 +41,7 @@ class TimeAdd{
         map.ctx.fillStyle = this.timeAdd_color;
         map.ctx.textBaseline = "middle";
         map.ctx.textAlign = "center";
-        map.ctx.font = this.size/15+"px Arial";
+        map.ctx.font = this.fontSize+"px Arial";
         map.ctx.fillText(`${hour}:${min}:${sec}`, this.x, this.y);
     }
 }

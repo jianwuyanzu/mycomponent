@@ -42,13 +42,17 @@ export default {
         // 表盘数据
         indicate: {
             type: Boolean,
-            default: false
+            default: true
         },
         indicate_color: {
             type: String,
             default: () => '#333333'
         },
         // 表针数据
+        clockHand_type: {
+            type: String,
+            default: () => 'none'
+        },
         clockHand_color: {
             type: String,
             default: () => '#9d9d5c'
@@ -117,10 +121,11 @@ export default {
         // 表针初始化
         clockHandInit(){
             clockHand.init({
+                clockHand_type: this.clockHand_type,
                 clockHand_color: this.clockHand_color,
                 clockHand_point_color: this.clockHand_point_color,
                 size: this.size,
-                clockHand_secType: this.clockHand_secType
+                clockHand_secType: this.clockHand_secType,
             })
         },
         // 具体时间初始化

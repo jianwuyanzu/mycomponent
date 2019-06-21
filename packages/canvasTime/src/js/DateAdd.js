@@ -13,12 +13,20 @@ class DateAdd{
         this.lineWidth = this.size/100 > 1 ? this.size/100 : 1;
         this.x = options.x;
         this.y = options.y;
+        this.fontSize = this.size/20;
     }
     // 渲染
     render(data){
         if(data && data.x && data.y){
-            this.x = data.x;
-            this.y = data.y;
+            if(data.x){
+                this.x = data.x;
+            }
+            if(data.y){
+                this.y = data.y;
+            }
+            if(data.fontSize){
+                this.fontSize = data.fontSize;
+            }
         }
 
         let now = new Date();
@@ -33,7 +41,7 @@ class DateAdd{
         map.ctx.fillStyle = this.dateAdd_color;
         map.ctx.textBaseline = "middle";
         map.ctx.textAlign = "center";
-        map.ctx.font = this.size/20+"px Arial";
+        map.ctx.font = this.fontSize+"px Arial";
         map.ctx.fillText(`${year}/${month}/${day}`, this.x, this.y);
         map.ctx.fillText(day_arr[now.getDay()], this.x, this.y + 11);
     }
