@@ -13,7 +13,7 @@
             <div class="jbxx">
                 <p>基本信息</p>
                 <div class='main_div myInfo'>
-                    <img src="./img/head.png" title="更多照片联系本人获取" oncontextmenu="return false;">
+                    <img src="./img/head.jpeg" title="更多照片联系本人获取" oncontextmenu="return false;">
                     <div class="jbxx_div">
                         <div class="info">
                             <p>姓名：<span>彭宏晟</span></p>
