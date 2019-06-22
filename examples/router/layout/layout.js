@@ -3,7 +3,7 @@ let route = [
         path: '/layout',
         name: 'layout',
         component: () => import('@/views/layout/layout'),
-        redirect: '/layout/h5Game',
+        redirect: '/layout/canvasTime',
         meta: {
             title: '主页'
         },
