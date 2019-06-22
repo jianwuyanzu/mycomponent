@@ -139,7 +139,6 @@ export default {
     .main{
         overflow: hidden;
         transition: all 1s;
-        padding-top: 50px;
         box-sizing: border-box;
         width: 100vw;
         // background-color: #ffffff;
