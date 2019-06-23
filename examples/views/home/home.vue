@@ -7,7 +7,7 @@
             v-model="homeType"
             inactive-color="#ff4949"
             active-text="简历版"
-            inactive-text="交友版（相亲版）">
+            inactive-text="交友版">
         </el-switch>
         <div class="main main_xq customScrollbar" :class="{active: !homeType}">
             <div class="jbxx">
@@ -107,7 +107,7 @@ export default {
     },
     mounted(){
         if(document.body.clientWidth < 450){
-            alert('本页面未对移动端做优化，建议pc端浏览')
+            alert('本页面未对移动端做优化，建议pc端浏览器浏览')
         }
     }
 }
