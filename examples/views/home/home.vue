@@ -4,6 +4,7 @@
         <background class="home_back"></background>
         <el-switch
             class="switch"
+            :disabled="true"
             v-model="homeType"
             inactive-color="#ff4949"
             active-text="简历版"
@@ -95,7 +96,7 @@ export default {
     },
     data(){
         return {
-            homeType: false
+            homeType: true
         }
     },
     methods: {
