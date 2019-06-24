@@ -42,7 +42,7 @@ h3{
 // 自定义滚动条样式
 .customScrollbar{
     overflow: auto;
-    overflow-y: hidden;
+    overflow-x: hidden;
     &:hover{
         // overflow: auto;
     }

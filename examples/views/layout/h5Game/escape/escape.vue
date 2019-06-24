@@ -24,7 +24,7 @@
             </div>
         </el-card>
 
-        <el-dialog title="示例" :visible.sync="escapeModal">
+        <el-dialog title="示例" :visible.sync="escapeModal" :fullscreen="true">
             <div class="escapeModal">
                 <escape></escape>
             </div>
@@ -59,7 +59,8 @@ export default {
         margin-bottom: 20px;
     }
     .escapeModal{
-        height: 400px;
+        // height: 100%;
+        height: 550px;
     }
 }
 </style>

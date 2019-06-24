@@ -24,7 +24,7 @@
             </div>
         </el-card>
 
-        <el-dialog title="示例" :visible.sync="modal">
+        <el-dialog title="示例" :visible.sync="modal" :fullscreen="true">
             <div class="modal">
                 <div>
                     <span>conti</span>
