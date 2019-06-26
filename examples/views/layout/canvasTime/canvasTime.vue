@@ -38,6 +38,10 @@
                     <span>conti clockHand_type="border"</span>
                     <canvas-time clockHand_type="border"></canvas-time>
                 </div>
+                <div class="title">
+                    <span>conti type="binary"</span>
+                    <canvas-time type="binary"></canvas-time>
+                </div>
             </div>
             <!-- <span slot="footer" class="dialog-footer">
                 <el-button @click="escapeModal = false">取 消</el-button>
@@ -55,7 +59,7 @@ export default {
                 attr: 'type',
                 des: '时钟类型',
                 type: 'string',
-                optional: 'conti',
+                optional: 'conti/binary',
                 default: 'conti'
             },{
                 attr: 'size',
@@ -146,6 +150,8 @@ export default {
     }
     .modal{
         display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
         .title{
             text-align: center;
         }

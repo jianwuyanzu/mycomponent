@@ -11,6 +11,7 @@ import indicate from './js/Indicator'
 import clockHand from './js/ClockHand'
 import timeAdd from './js/TimeAdd'
 import dateAdd from './js/DateAdd'
+import binary from './js/Binary'
 
 let animationID = '';
 
@@ -96,6 +97,7 @@ export default {
             this.mapInit();
             this.indicateInit();
             this.clockHandInit();
+            this.clockBinaryInit();
             this.timeAddInit();
             this.dateAddInit(); 
         },
@@ -131,6 +133,12 @@ export default {
                 map: map,
             })
         },
+        // 二进制表针初始化
+        clockBinaryInit(){
+            binary.init({
+                map: map,
+            })
+        },
         // 具体时间初始化
         timeAddInit(){
             timeAdd.init({
@@ -157,13 +165,10 @@ export default {
             // 地图渲染
             this.mapInit();
             map.render();
-            // 表盘渲染
-            if(this.indicate){
-                indicate.render();
-            }
             // 判断钟表类型
             switch(this.type){
                 case 'conti': this.clock_conti();break;
+                case 'binary': this.clock_binary();break;
             }
             animationID = raf(this.startAnimation);
             // console.log(this.$refs.canvasTime)
@@ -171,17 +176,29 @@ export default {
         },
         // conti数据渲染
         clock_conti(){
+            // 表盘渲染
+            if(this.indicate){
+                indicate.render();
+            }
             clockHand.render({
                 clockHand_type: this.clockHand_type,
                 clockHand_color: this.clockHand_color,
                 clockHand_point_color: this.clockHand_point_color,
                 size: this.size,
                 clockHand_secType: this.clockHand_secType,
-                id: this.id,
             });
             timeAdd.render();
             dateAdd.render();
         },
+        // binary数据渲染
+        clock_binary(){
+            binary.render({
+                binary_color: this.clockHand_color,
+                size: this.size,
+                time_24h: this.time_24h,
+            });
+            dateAdd.render();
+        }
     },
     mounted(){
         this.dataInit();
