@@ -1,11 +1,12 @@
 <template>
     <div class="CANVASTIME">
-        <canvas class="canvas" ref="canvasTime" :style="canvasStyle"></canvas>
+        <canvas class="canvas" ref="canvasTime" id="canvasTime" :style="canvasStyle"></canvas>
     </div>
 </template>
 
 <script>
-import map from './js/Map'
+import Map from './js/Map'
+let map = new Map();
 import indicate from './js/Indicator'
 import clockHand from './js/ClockHand'
 import timeAdd from './js/TimeAdd'
@@ -96,24 +97,30 @@ export default {
             this.indicateInit();
             this.clockHandInit();
             this.timeAddInit();
-            this.dateAddInit();
+            this.dateAddInit(); 
         },
         // 背景初始化
         mapInit(){
-            const canvas = this.$refs.canvasTime;
-            canvas.width = canvas.clientWidth;
-            canvas.height = canvas.clientHeight;
+            try {
+                const canvas = this.$refs.canvasTime;
+                canvas.width = canvas.clientWidth;
+                canvas.height = canvas.clientHeight;
 
-            map.init({
-                canvas,
-                width: canvas.clientWidth,
-                height: canvas.clientHeight,
-                bg_color: this.bg_color
-            });
+                map.init({
+                    canvas,
+                    width: canvas.clientWidth,
+                    height: canvas.clientHeight,
+                    bg_color: this.bg_color
+                });
+            } catch (error) {
+                
+            }
+            
         },
         // 表盘初始化
         indicateInit(){
             indicate.init({
+                map: map,
                 indicate_color: this.indicate_color,
                 size: this.size,
             })
@@ -121,16 +128,13 @@ export default {
         // 表针初始化
         clockHandInit(){
             clockHand.init({
-                clockHand_type: this.clockHand_type,
-                clockHand_color: this.clockHand_color,
-                clockHand_point_color: this.clockHand_point_color,
-                size: this.size,
-                clockHand_secType: this.clockHand_secType,
+                map: map,
             })
         },
         // 具体时间初始化
         timeAddInit(){
             timeAdd.init({
+                map: map,
                 timeAdd_color: this.timeAdd_color,
                 time_24h: this.time_24h,
                 size: this.size,
@@ -141,6 +145,7 @@ export default {
         // 具体日期初始化
         dateAddInit(){
             dateAdd.init({
+                map: map,
                 size: this.size,
                 dateAdd_color: this.dateAdd_color,
                 x: this.size/2,
@@ -150,6 +155,7 @@ export default {
         // 所有数据渲染
         startAnimation(){
             // 地图渲染
+            this.mapInit();
             map.render();
             // 表盘渲染
             if(this.indicate){
@@ -160,10 +166,19 @@ export default {
                 case 'conti': this.clock_conti();break;
             }
             animationID = raf(this.startAnimation);
+            // console.log(this.$refs.canvasTime)
+            // debugger
         },
         // conti数据渲染
         clock_conti(){
-            clockHand.render();
+            clockHand.render({
+                clockHand_type: this.clockHand_type,
+                clockHand_color: this.clockHand_color,
+                clockHand_point_color: this.clockHand_point_color,
+                size: this.size,
+                clockHand_secType: this.clockHand_secType,
+                id: this.id,
+            });
             timeAdd.render();
             dateAdd.render();
         },

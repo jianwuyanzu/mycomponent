@@ -22,4 +22,4 @@ class Map {
     }
 }
 
-export default new Map();
+export default Map;

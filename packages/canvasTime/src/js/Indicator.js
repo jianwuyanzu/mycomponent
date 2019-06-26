@@ -1,19 +1,19 @@
 /**
  * 表盘
  */
-import map from './Map';
 
 class Indicator{
     // 初始化
     init(options){
+        this.map = options.map;
         this.lineWidth = this.size/100 > 1 ? this.size/100 : 1;
         this.indicate_color = options.indicate_color;
         this.size = options.size;
     }
     // 渲染
     render(){
-        map.ctx.lineWidth = this.lineWidth;
-        map.ctx.strokeStyle = this.indicate_color;
+        this.map.ctx.lineWidth = this.lineWidth;
+        this.map.ctx.strokeStyle = this.indicate_color;
 
         let angle = 12;
         for(let a=0; a<angle; a++){
@@ -31,12 +31,12 @@ class Indicator{
                 ekstra = this.size/50;
             }
 
-            map.ctx.beginPath();
-            map.ctx.moveTo(x*(this.size/3+ekstra)+(this.size/2),y*(this.size/3+ekstra)+(this.size/2));
-            map.ctx.lineTo(x*this.size/3.25+(this.size/2),y*this.size/3.25+(this.size/2));
-            map.ctx.stroke();
-            map.ctx.fill();
-            map.ctx.closePath();
+            this.map.ctx.beginPath();
+            this.map.ctx.moveTo(x*(this.size/3+ekstra)+(this.size/2),y*(this.size/3+ekstra)+(this.size/2));
+            this.map.ctx.lineTo(x*this.size/3.25+(this.size/2),y*this.size/3.25+(this.size/2));
+            this.map.ctx.stroke();
+            this.map.ctx.fill();
+            this.map.ctx.closePath();
         }
     }
 }

@@ -26,9 +26,17 @@
 
         <el-dialog title="示例" :visible.sync="modal" :fullscreen="true">
             <div class="modal">
-                <div>
+                <div class="title">
+                    <span>conti clockHand_secType="false"</span>
+                    <canvas-time :clockHand_secType="false"></canvas-time>
+                </div>
+                <div class="title">
                     <span>conti</span>
                     <canvas-time></canvas-time>
+                </div>
+                <div class="title">
+                    <span>conti clockHand_type="border"</span>
+                    <canvas-time clockHand_type="border"></canvas-time>
                 </div>
             </div>
             <!-- <span slot="footer" class="dialog-footer">
@@ -138,6 +146,9 @@ export default {
     }
     .modal{
         display: flex;
+        .title{
+            text-align: center;
+        }
     }
 }
 </style>

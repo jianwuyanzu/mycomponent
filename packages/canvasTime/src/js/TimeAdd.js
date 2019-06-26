@@ -1,11 +1,11 @@
 /**
  * 具体时间
  */
-import map from './Map'
 
 class TimeAdd{
     // 初始化
     init(options){
+        this.map = options.map;
         this.timeAdd_color = options.timeAdd_color;
         this.time_24h = options.time_24h;
         this.size = options.size;
@@ -37,12 +37,12 @@ class TimeAdd{
         if(min < 10){ min = '0' + min };
         if(hour < 10){ hour = '0' + hour };
 
-        map.ctx.lineWidth = this.lineWidth;
-        map.ctx.fillStyle = this.timeAdd_color;
-        map.ctx.textBaseline = "middle";
-        map.ctx.textAlign = "center";
-        map.ctx.font = this.fontSize+"px Arial";
-        map.ctx.fillText(`${hour}:${min}:${sec}`, this.x, this.y);
+        this.map.ctx.lineWidth = this.lineWidth;
+        this.map.ctx.fillStyle = this.timeAdd_color;
+        this.map.ctx.textBaseline = "middle";
+        this.map.ctx.textAlign = "center";
+        this.map.ctx.font = this.fontSize+"px Arial";
+        this.map.ctx.fillText(`${hour}:${min}:${sec}`, this.x, this.y);
     }
 }
 
