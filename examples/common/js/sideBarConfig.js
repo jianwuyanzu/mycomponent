@@ -6,6 +6,12 @@ let sideBar = [
         icon: 'fa-clock-o',
         children: []
     },{
+        title: 'canvas签名',
+        name: 'canvasAutoGraph',
+        path: '/layout/canvasAutoGraph',
+        icon: 'fa-pencil-square-o',
+        children: []
+    },{
         title: 'h5GAME',
         name: 'h5GAME',
         path: '/layout/h5GAME',

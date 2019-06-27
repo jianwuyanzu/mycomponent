@@ -6,7 +6,7 @@
                 <el-button style="float: right; padding: 3px 0" type="text" @click="modal = true;">示例</el-button>
             </div>
             <div>
-                <h3>canvas-time Attributes</h3>
+                <h3>Attributes</h3>
                 <el-table :data="attributesList" border>
                     <el-table-column prop="attr" label="参数"></el-table-column>
                     <el-table-column prop="des" label="说明"></el-table-column>
@@ -15,7 +15,7 @@
                     <el-table-column prop="default" label="默认值"></el-table-column>
                 </el-table>
 
-                <h3>canvas-time Events</h3>
+                <h3>Events</h3>
                 <el-table :data="eventsList" border>
                     <el-table-column prop="funName" label="事件名"></el-table-column>
                     <el-table-column prop="des" label="说明"></el-table-column>

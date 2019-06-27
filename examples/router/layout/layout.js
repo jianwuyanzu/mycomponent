@@ -33,6 +33,13 @@ let route = [
                 meta: {
                     title: 'canvas时钟'
                 },
+            },{
+                path: '/layout/canvasAutoGraph',
+                name: 'canvasAutoGraph',
+                component: () => import('@/views/layout/canvasAutoGraph/canvasAutoGraph'),
+                meta: {
+                    title: 'canvas签名'
+                },
             }
         ]
     }

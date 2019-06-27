@@ -1,9 +1,9 @@
 <template>
-    <div class="ESCAPE">
-        <el-card class="escape-card">
+    <div class="AUTOGRAPH">
+        <el-card class="card">
             <div slot="header">
-                <span class="FS18">粒子逃脱(escape)</span>
-                <el-button style="float: right; padding: 3px 0" type="text" @click="escapeModal = true;">示例</el-button>
+                <span class="FS18">签名canvasAutoGraph</span>
+                <el-button style="float: right; padding: 3px 0" type="text" @click="modal = true;">示例</el-button>
             </div>
             <div>
                 <h3>Attributes</h3>
@@ -24,13 +24,13 @@
             </div>
         </el-card>
 
-        <el-dialog title="示例" :visible.sync="escapeModal" :fullscreen="true">
-            <div class="escapeModal">
-                <escape></escape>
+        <el-dialog title="示例" :visible.sync="modal" :fullscreen="true">
+            <div class="modal">
+                <canvasAutoGraph></canvasAutoGraph>
             </div>
             <!-- <span slot="footer" class="dialog-footer">
-                <el-button @click="escapeModal = false">取 消</el-button>
-                <el-button type="primary" @click="escapeModal = false">确 定</el-button>
+                <el-button @click="modal = false">取 消</el-button>
+                <el-button type="primary" @click="modal = false">确 定</el-button>
             </span> -->
         </el-dialog>
     </div>
@@ -43,22 +43,22 @@ export default {
         return {
             attributesList: attributesList,
             eventsList: eventsList,
-            escapeModal: false,
+            modal: false,
         }
     }
 }
 </script>
 
 <style lang="scss" scoped>
-.ESCAPE{
-    .escape-card{
+.AUTOGRAPH{
+    .card{
         flex: 1;
         // min-height: 500px;
     }
     .el-table{
         margin-bottom: 20px;
     }
-    .escapeModal{
+    .modal{
         // height: 100%;
         height: 550px;
     }

@@ -1,10 +1,12 @@
 import escape from './escape'
 import canvasTime from './canvasTime'
+import canvasAutoGraph from './canvasAutoGraph'
 
 // 存储组件列表
 const components = [
     escape,
-    canvasTime
+    canvasTime,
+    canvasAutoGraph
 ];
 
 // 定义install方法，接收vue作为参数，如果使用use注册插件，所有的组件都被注册
@@ -28,5 +30,6 @@ export default {
     install,
     // 具体的组件列表
     escape,
-    canvasTime
+    canvasTime,
+    canvasAutoGraph
 }

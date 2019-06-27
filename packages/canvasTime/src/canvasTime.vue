@@ -1,6 +1,6 @@
 <template>
     <div class="CANVASTIME">
-        <canvas class="canvas" ref="canvasTime" id="canvasTime" :style="canvasStyle"></canvas>
+        <canvas class="canvas" ref="canvasTime" :style="canvasStyle"></canvas>
     </div>
 </template>
 
