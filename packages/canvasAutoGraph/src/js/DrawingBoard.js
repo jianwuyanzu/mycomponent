@@ -25,23 +25,19 @@ class DrawingBoard {
         let paint = options.paint;
         let lineWidth = options.lineWidth;
 
-        let point = {};
-
         this.ctx.strokeStyle = pen_color;
         this.ctx.lineJoin = 'round';
         this.ctx.lineWidth = lineWidth;
+        // console.log(clickX, clickY)
         
-        // while (clickX.length > 0){
-        //     point.x = clickX.pop();
-        //     point.y = clickY.pop();
-        //     point.drag = clickDrag.pop();
-        //     console.log(point)
-        //     this.ctx.beginPath();
-        //     this.ctx.moveTo(point.x, point.y);
-        //     this.ctx.lineTo(0, 0);
-        //     this.ctx.closePath();
-        //     this.ctx.stroke();
-        // }
+        for(let [index, val] of clickX.entries()){
+            if(index == 0){
+                this.ctx.moveTo(val-1, clickY[index]);
+            }
+            this.ctx.lineTo(val, clickY[index]);
+        }
+        this.ctx.closePath();
+        this.ctx.stroke();
     }
 }
 

@@ -1,34 +1,24 @@
 <template>
     <div class="AUTOGRAPH">
-        <canvas ref="autoGraph" :style="canvasStyle"></canvas>
+        <canvas ref="autoGraph"></canvas>
     </div>
 </template>
 
 <script>
 import drawingBoard from './js/DrawingBoard'
 
-let clickX = new Array();
-let clickY = new Array();
-let clickDrag = new Array();
-let paint;
+let clickX = [];
+let clickY = [];
+let pressdowm = false;
 
 let addClick = function(x, y, dragging){
     clickX.push(x);
     clickY.push(y);
-    clickDrag.push(dragging);
 }
 
 export default {
     name: 'canvasAutoGraph',
     props: {
-        width: {
-            type: Number,
-            default: () => 500
-        },
-        height: {
-            type: Number,
-            default: () => 500
-        },
         bg_color: {
             type: String,
             default: () => '#f5f5f5'
@@ -43,13 +33,7 @@ export default {
         }
     },
     computed: {
-        canvasStyle(){
-            let a = {
-                width: `${this.width}px`,
-                height: `${this.height}px`
-            }
-            return a;
-        }
+
     },
     methods: {
         // 画板初始化
@@ -66,27 +50,88 @@ export default {
             })
 
             // 事件绑定
-            canvas.addEventListener('mousedown', this.canvasMousedown)
+            canvas.addEventListener('mousedown', this.canvasMousedown);
+            canvas.addEventListener('mousemove', this.canvasMousemove);
+            canvas.addEventListener('mouseup', this.canvasMouseup);
+
+            canvas.addEventListener('touchstart', this.canvasTouchstart);
+            canvas.addEventListener('touchmove', this.canvasTouchmove);
+            canvas.addEventListener('touchend', this.canvasTouchend);
+        },
+        // 记录点并渲染
+        recordAndRender(e){
+            let data;
+            if(e.pageX){
+                data = e
+            }else{
+                data = e.touches[0];
+            }
+            let mouseX = data.pageX - this.$refs.autoGraph.getBoundingClientRect().left;
+            let mouseY = data.pageY - this.$refs.autoGraph.getBoundingClientRect().top;
+
+            addClick(mouseX, mouseY);
+            this.render();
         },
         // 鼠标事件
         canvasMousedown(e){
-            let mouseX = e.pageX - this.$refs.autoGraph.getBoundingClientRect().left;
-            let mouseY = e.pageY - this.$refs.autoGraph.getBoundingClientRect().top;
-            paint = true;
+            pressdowm = true;
+            this.recordAndRender(e);
+        },
+        canvasMousemove(e){
+            if(pressdowm){
+                this.recordAndRender(e);
+            }
+            
+        },
+        canvasMouseup(e){
+            pressdowm = false;
+            clickX = [];
+            clickY = [];
 
-            addClick(mouseX, mouseY, false);
-            this.render();
+            // this.render();
+        },
+        // 手指事件
+        canvasTouchstart(e){
+            pressdowm = true;
+            this.recordAndRender(e);
+        },
+        canvasTouchmove(e){
+            if(pressdowm){
+                this.recordAndRender(e);
+            }
+            e.preventDefault();
+        },
+        canvasTouchend(e){
+            pressdowm = false;
+            clickX = [];
+            clickY = [];
         },
         // 渲染
         render(){
             drawingBoard.render({
                 pen_color: this.pen_color,
-                clickX: clickX,
-                clickY: clickY,
-                clickDrag: clickDrag,
-                paint: paint,
+                clickX: clickX.slice(clickX.length-2, clickX.length),
+                clickY: clickY.slice(clickY.length-2, clickY.length),
+                // clickX: [clickX[0], clickX[clickX.length-1]],
+                // clickY: [clickY[0], clickY[clickY.length-1]],
                 lineWidth: this.lineWidth,
             });
+        },
+        // 清除
+        clear(){
+            drawingBoard.clear();
+            this.drawingBoard();
+        },
+        // 图片
+        toDataURL(){
+            return new Promise((resolve, reject)=>{
+                this.$refs.autoGraph.toBlob((blob)=>{
+                    resolve({
+                       base64: this.$refs.autoGraph.toDataURL('image/png'),
+                       blob: blob
+                    })
+                });
+            })
         }
     },
     mounted(){
@@ -100,6 +145,8 @@ export default {
     >canvas{
         border-radius: 20px;
         cursor: crosshair;
+        width: 100%;
+        height: 100%;
     }
 }
 </style>

@@ -26,7 +26,15 @@
 
         <el-dialog title="示例" :visible.sync="modal" :fullscreen="true">
             <div class="modal">
-                <canvasAutoGraph></canvasAutoGraph>
+                <div class="buttonGroup">
+                    <el-button type="primary" size="small" @click="clear()">清除</el-button>
+                    <el-button type="primary" size="small" @click="toDataURL()">确认</el-button>
+                </div>
+                <div class="broad">
+                    <canvasAutoGraph class="canvasAutoGraph" ref="canvasAutoGraph"></canvasAutoGraph>
+                    <img :src="url">
+                </div>
+                
             </div>
             <!-- <span slot="footer" class="dialog-footer">
                 <el-button @click="modal = false">取 消</el-button>
@@ -44,6 +52,18 @@ export default {
             attributesList: attributesList,
             eventsList: eventsList,
             modal: false,
+            url: ''
+        }
+    },
+    methods: {
+        clear(){
+            this.$refs.canvasAutoGraph.clear();
+        },
+        toDataURL(){
+            this.$refs.canvasAutoGraph.toDataURL().then((res)=>{
+                console.log(res)
+                this.url = res.base64;
+            })
         }
     }
 }
@@ -61,6 +81,18 @@ export default {
     .modal{
         // height: 100%;
         height: 550px;
+        .buttonGroup{
+            margin-bottom: 20px;
+        }
+        .canvasAutoGraph{
+            width: 500px;
+            height: 500px;
+        }
+        .broad{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
     }
 }
 </style>
