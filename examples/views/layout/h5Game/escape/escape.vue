@@ -26,7 +26,7 @@
 
         <el-dialog title="示例" :visible.sync="escapeModal" :fullscreen="true">
             <div class="escapeModal">
-                <escape></escape>
+                <escape class="test"></escape>
             </div>
             <!-- <span slot="footer" class="dialog-footer">
                 <el-button @click="escapeModal = false">取 消</el-button>
@@ -61,6 +61,10 @@ export default {
     .escapeModal{
         // height: 100%;
         height: 550px;
+        .test{
+            min-width: 333px;
+            width: 50%;
+        }
     }
 }
 </style>
