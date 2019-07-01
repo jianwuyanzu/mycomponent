@@ -53,6 +53,7 @@ export default {
             canvas.addEventListener('mousedown', this.canvasMousedown);
             canvas.addEventListener('mousemove', this.canvasMousemove);
             canvas.addEventListener('mouseup', this.canvasMouseup);
+            canvas.addEventListener('mouseout', this.canvasMouseout);
 
             canvas.addEventListener('touchstart', this.canvasTouchstart);
             canvas.addEventListener('touchmove', this.canvasTouchmove);
@@ -90,6 +91,11 @@ export default {
 
             // this.render();
         },
+        canvasMouseout(e){
+            pressdowm = false;
+            clickX = [];
+            clickY = [];
+        },
         // 手指事件
         canvasTouchstart(e){
             pressdowm = true;
@@ -123,7 +129,7 @@ export default {
             this.drawingBoard();
         },
         // 图片
-        toDataURL(){
+        getData(){
             return new Promise((resolve, reject)=>{
                 this.$refs.autoGraph.toBlob((blob)=>{
                     resolve({

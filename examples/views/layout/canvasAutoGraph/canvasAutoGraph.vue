@@ -15,9 +15,16 @@
                     <el-table-column prop="default" label="默认值"></el-table-column>
                 </el-table>
 
+                <h3>Function</h3>
+                <el-table :data="functionList" border>
+                    <el-table-column prop="funName" label="方法名"></el-table-column>
+                    <el-table-column prop="des" label="说明"></el-table-column>
+                    <el-table-column prop="attr" label="参数"></el-table-column>
+                </el-table>
+
                 <h3>Events</h3>
                 <el-table :data="eventsList" border>
-                    <el-table-column prop="funName" label="事件名"></el-table-column>
+                    <el-table-column prop="eventName" label="事件名"></el-table-column>
                     <el-table-column prop="des" label="说明"></el-table-column>
                     <el-table-column prop="attr" label="参数"></el-table-column>
                 </el-table>
@@ -47,10 +54,41 @@
 <script>
 export default {
     data(){
-        let attributesList = [], eventsList = [];
+        let attributesList = [
+            {
+                attr: 'bg_color',
+                des: '画布背景',
+                type: 'string',
+                optional: '',
+                default: '#f5f5f5'
+            },{
+                attr: 'pen_color',
+                des: '画笔颜色',
+                type: 'string',
+                optional: '',
+                default: '#000000'
+            },{
+                attr: 'lineWidth',
+                des: '线条宽度',
+                type: 'Number',
+                optional: '',
+                default: '2'
+            },
+        ], eventsList = [], functionList = [
+            {
+                funName: 'clear',
+                des: '重置画布',
+                attr: '',
+            },{
+                funName: 'getData',
+                des: '获取画布内容，返回一个promise对象',
+                attr: '',
+            }
+        ];
         return {
             attributesList: attributesList,
             eventsList: eventsList,
+            functionList: functionList,
             modal: false,
             url: ''
         }
@@ -60,7 +98,7 @@ export default {
             this.$refs.canvasAutoGraph.clear();
         },
         toDataURL(){
-            this.$refs.canvasAutoGraph.toDataURL().then((res)=>{
+            this.$refs.canvasAutoGraph.getData().then((res)=>{
                 console.log(res)
                 this.url = res.base64;
             })
