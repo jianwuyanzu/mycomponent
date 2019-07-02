@@ -9,6 +9,27 @@ let route = [
         },
         children: [
             {
+                path: '/layout/canvasTime',
+                name: 'canvasTime',
+                component: () => import('@/views/layout/canvasTime/canvasTime'),
+                meta: {
+                    title: 'canvas时钟'
+                },
+            },{
+                path: '/layout/canvasAutoGraph',
+                name: 'canvasAutoGraph',
+                component: () => import('@/views/layout/canvasAutoGraph/canvasAutoGraph'),
+                meta: {
+                    title: 'canvas签名'
+                },
+            },{
+                path: '/layout/sildVer',
+                name: 'sildVer',
+                component: () => import('@/views/layout/sildVer/sildVer'),
+                meta: {
+                    title: '滑动验证'
+                },
+            },{
                 path: '/layout/h5Game',
                 name: 'h5Game',
                 component: () => import('@/views/layout/h5Game/h5Game'),
@@ -26,21 +47,7 @@ let route = [
                         }
                     }
                 ]
-            },{
-                path: '/layout/canvasTime',
-                name: 'canvasTime',
-                component: () => import('@/views/layout/canvasTime/canvasTime'),
-                meta: {
-                    title: 'canvas时钟'
-                },
-            },{
-                path: '/layout/canvasAutoGraph',
-                name: 'canvasAutoGraph',
-                component: () => import('@/views/layout/canvasAutoGraph/canvasAutoGraph'),
-                meta: {
-                    title: 'canvas签名'
-                },
-            }
+            },
         ]
     }
 ];

@@ -12,6 +12,12 @@ let sideBar = [
         icon: 'fa-pencil-square-o',
         children: []
     },{
+        title: '滑动验证',
+        name: 'sildVer',
+        path: '/layout/sildVer',
+        icon: 'fa-hand-o-up',
+        children: []
+    },{
         title: 'h5GAME',
         name: 'h5GAME',
         path: '/layout/h5GAME',

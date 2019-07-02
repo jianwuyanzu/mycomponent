@@ -1,6 +1,12 @@
 <template>
     <div class="AUTOGRAPH">
-        <canvas ref="autoGraph"></canvas>
+        <canvas ref="autoGraph" @mousedown="canvasMousedown($event)"
+                                @mousemove="canvasMousemove($event)"
+                                @mouseup="canvasMouseup($event)"
+                                @mouseout="canvasMouseout($event)"
+                                @touchstart="canvasTouchstart($event)"
+                                @touchmove="canvasTouchmove($event)"
+                                @touchend="canvasTouchend($event)"></canvas>
     </div>
 </template>
 
@@ -48,16 +54,6 @@ export default {
                 height: canvas.clientHeight,
                 bg_color: this.bg_color
             })
-
-            // 事件绑定
-            canvas.addEventListener('mousedown', this.canvasMousedown);
-            canvas.addEventListener('mousemove', this.canvasMousemove);
-            canvas.addEventListener('mouseup', this.canvasMouseup);
-            canvas.addEventListener('mouseout', this.canvasMouseout);
-
-            canvas.addEventListener('touchstart', this.canvasTouchstart);
-            canvas.addEventListener('touchmove', this.canvasTouchmove);
-            canvas.addEventListener('touchend', this.canvasTouchend);
         },
         // 记录点并渲染
         recordAndRender(e){
