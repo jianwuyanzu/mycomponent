@@ -36,6 +36,7 @@
                 <div class="buttonGroup">
                     <el-button type="primary" size="small" @click="clear()">清除</el-button>
                     <el-button type="primary" size="small" @click="toDataURL()">确认</el-button>
+                    <el-button type="primary" size="small" @click="insertImg()">插入</el-button>
                 </div>
                 <div class="broad">
                     <canvasAutoGraph class="canvasAutoGraph" ref="canvasAutoGraph"></canvasAutoGraph>
@@ -99,9 +100,25 @@ export default {
         },
         toDataURL(){
             this.$refs.canvasAutoGraph.getData().then((res)=>{
-                console.log(res)
+                // console.log(res)
                 this.url = res.base64;
             })
+        },
+        insertImg(){
+            let img = new Image();
+            img.crossOrigin = "anonymous"; // 关键 跨域
+            img.src = require('@/assets/logo.png');
+            img.onload = ()=>{
+                // console.log(img)
+                this.$refs.canvasAutoGraph.insertImg(img);
+            }
+            img.onerror = (err) => {
+                // console.log(err)
+                this.$message({
+                    message: '加载图片失败',
+                    type: 'error'
+                });
+            }            
         }
     }
 }

@@ -39,6 +39,10 @@ class DrawingBoard {
         this.ctx.closePath();
         this.ctx.stroke();
     }
+    // 插入图片
+    insertImg(img){
+        this.ctx.drawImage(img, 0, 0, this.width, this.height);
+    }
 }
 
 export default new DrawingBoard();

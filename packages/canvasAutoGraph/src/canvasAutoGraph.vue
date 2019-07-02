@@ -128,7 +128,7 @@ export default {
             drawingBoard.clear();
             this.drawingBoard();
         },
-        // 图片
+        // 获取图片
         getData(){
             return new Promise((resolve, reject)=>{
                 this.$refs.autoGraph.toBlob((blob)=>{
@@ -138,6 +138,11 @@ export default {
                     })
                 });
             })
+        },
+        // 插入图片
+        insertImg(img){
+            this.clear();
+            drawingBoard.insertImg(img);
         }
     },
     mounted(){
