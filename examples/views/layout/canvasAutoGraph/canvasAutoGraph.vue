@@ -84,6 +84,10 @@ export default {
                 funName: 'getData',
                 des: '获取画布内容，返回一个promise对象',
                 attr: '',
+            },{
+                funName: 'insertImg',
+                des: '插入一张图片',
+                attr: '同canvas.drawImage(img)',
             }
         ];
         return {
