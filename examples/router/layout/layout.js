@@ -23,9 +23,9 @@ let route = [
                     title: 'canvas签名'
                 },
             },{
-                path: '/layout/sildVer',
-                name: 'sildVer',
-                component: () => import('@/views/layout/sildVer/sildVer'),
+                path: '/layout/slidVer',
+                name: 'slidVer',
+                component: () => import('@/views/layout/slidVer/slidVer'),
                 meta: {
                     title: '滑动验证'
                 },

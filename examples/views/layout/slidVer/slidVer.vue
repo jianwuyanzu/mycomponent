@@ -1,8 +1,8 @@
 <template>
-    <div class="SILDVER">
+    <div class="slidVER">
         <el-card class="card">
             <div slot="header">
-                <span class="FS18">滑动验证sildVer</span>
+                <span class="FS18">滑动验证slidVer</span>
                 <el-button style="float: right; padding: 3px 0" type="text" @click="modal = true;">示例</el-button>
             </div>
             <div>
@@ -33,7 +33,14 @@
 
         <el-dialog title="示例" :visible.sync="modal" :fullscreen="true">
             <div class="modal">
-                <sild-ver class="sildVer"></sild-ver>
+                <div>
+                    <span>滑动验证</span>
+                    <slid-ver class="slidVer" @fail="fail" @success="success"></slid-ver>
+                </div>
+                <div>
+                    <span>滑动拼图验证</span>
+                    <slid-ver class="slidVer" type="slid_image" @fail="fail" @success="success"></slid-ver>
+                </div>
             </div>
             <!-- <span slot="footer" class="dialog-footer">
                 <el-button @click="modal = false">取 消</el-button>
@@ -46,7 +53,25 @@
 <script>
 export default {
     data(){
-        let attributesList = [], eventsList = [], functionList = [];
+        let attributesList = [
+            {
+                attr: 'type',
+                des: '验证类型',
+                type: 'string',
+                optional: 'slid/slid_image',
+                default: 'slid'
+            }
+        ], eventsList = [
+            {
+                eventName: 'fail',
+                des: '验证失败时触发',
+                attr: ''
+            },{
+                eventName: 'success',
+                des: '验证成功时触发',
+                attr: ''
+            }
+        ], functionList = [];
         return {
             attributesList: attributesList,
             eventsList: eventsList,
@@ -54,12 +79,20 @@ export default {
             modal: false,
             url: ''
         }
+    },
+    methods: {
+        fail(){
+            console.log('fail');
+        },
+        success(){
+            console.log('success')
+        }
     }
 }
 </script>
 
 <style lang="scss" scoped>
-.SILDVER{
+.slidVER{
     .card{
         flex: 1;
         // min-height: 500px;
@@ -68,9 +101,12 @@ export default {
         margin-bottom: 20px;
     }
     .modal{
-        .sildVer{
-            width: 300px;
-            height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        .slidVer{
+            width: 600px;
+            // height: 50px;
         }
     }
 }

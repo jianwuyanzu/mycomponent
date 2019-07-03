@@ -13,8 +13,8 @@ let sideBar = [
         children: []
     },{
         title: '滑动验证',
-        name: 'sildVer',
-        path: '/layout/sildVer',
+        name: 'slidVer',
+        path: '/layout/slidVer',
         icon: 'fa-hand-o-up',
         children: []
     },{
