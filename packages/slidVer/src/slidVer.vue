@@ -1,7 +1,7 @@
 <template>
     <div class="slidVER">
-        <div class="sliderImage" v-show="type == 'slid_image'">
-            <i class="refresh fa fa-refresh" @click="initImg()"></i>
+        <div class="sliderImage" v-if="type == 'slid_image'">
+            <i class="refresh fa fa-refresh" @click="reset()"></i>
             <canvas ref="canvas_img"></canvas>
             <canvas ref="canvas_block" class="block"></canvas>
         </div>
@@ -122,7 +122,9 @@ export default {
                 if (moveX > 0 && moveX + 38 < this.$refs.sliderContainer.clientWidth){
                     this.$refs.slider.style.left = moveX + 'px';
                     this.$refs.sliderMask.style.width = moveX + 'px';
-                    this.$refs.canvas_block.style.left = moveX + 'px';
+                    if(this.type == 'slid_image'){
+                        this.$refs.canvas_block.style.left = moveX + 'px';
+                    }
                 }
                 
             }
@@ -154,9 +156,6 @@ export default {
                 this.success = false;
                 setTimeout(()=>{
                     this.reset();
-                    if(this.type == 'slid_image'){
-                        this.initImg();
-                    }
                 }, 1000)
             }
 
@@ -174,11 +173,13 @@ export default {
             this.success = false;
             this.$refs.slider.style.left = 0 + 'px';
             this.$refs.sliderMask.style.width = 0 + 'px';
-            this.$refs.canvas_block.style.left = 0 + 'px';
+            if(this.type == 'slid_image'){
+                this.$refs.canvas_block.style.left = 0 + 'px';
+                this.initImg();
+            }
         },
         // 绘制图片
         initImg(){
-            this.reset();
             let w = this.$refs.sliderContainer.clientWidth;
             let canvas = this.$refs.canvas_img;
             let canvasCtx = this.$refs.canvas_img.getContext('2d');
@@ -208,9 +209,7 @@ export default {
         }
     },
     mounted(){
-        if(this.type == 'slid_image'){
-            this.initImg();
-        }
+        this.reset();
     }
 }
 </script>

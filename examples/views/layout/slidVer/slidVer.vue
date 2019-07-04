@@ -71,7 +71,13 @@ export default {
                 des: '验证成功时触发',
                 attr: ''
             }
-        ], functionList = [];
+        ], functionList = [
+            {
+                funName: 'reset',
+                des: '重置',
+                attr: ''
+            }
+        ];
         return {
             attributesList: attributesList,
             eventsList: eventsList,
