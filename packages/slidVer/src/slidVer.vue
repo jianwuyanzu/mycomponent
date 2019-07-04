@@ -120,7 +120,7 @@ export default {
                 const moveY = eventY - originY;
                 if (moveX > 0 && moveX + 38 < this.$refs.sliderContainer.clientWidth){
                     this.$refs.slider.style.left = moveX + 'px';
-                    this.$refs.sliderMask.style.width = moveX + 'px';
+                    this.$refs.sliderMask.style.width = moveX + 10 + 'px';
                     if(this.type == 'slid_image'){
                         this.$refs.canvas_block.style.left = moveX + 'px';
                     }
@@ -254,6 +254,7 @@ export default {
         background: #f7f9fa;
         color: #45494c;
         border: 1px solid #e4e7eb;
+        border-radius: 10px;
         .sliderMask{
             width: 0px;
             height: 40px;
@@ -261,6 +262,7 @@ export default {
             left: 0;
             top: 0;
             background: #D1E9FE;
+            border-radius: 10px 0 0 10px;
             &.sliderMask_fail{
                 background-color: #fce1e1 !important;
             }
@@ -268,6 +270,7 @@ export default {
                 background-color: #D2F4EF;
             }
             .slider{
+                border-radius: 10px;
                 position: absolute;
                 left: 0;
                 top: 0;

@@ -62,7 +62,9 @@ export default {
         }
     },
     mounted() {
-        
+        if(document.body.clientWidth < 450){
+            this.navSet.isCollapse = true;
+        }
     }
 }
 </script>
