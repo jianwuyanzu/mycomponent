@@ -2,7 +2,7 @@
     <div class="slidVER">
         <el-card class="card">
             <div slot="header">
-                <span class="FS18">滑动验证slidVer</span>
+                <span class="FS18">滑动验证slidVer 此插件目前只能纯前端验证，仅供学习交流</span>
                 <el-button style="float: right; padding: 3px 0" type="text" @click="modal = true;">示例</el-button>
             </div>
             <div>

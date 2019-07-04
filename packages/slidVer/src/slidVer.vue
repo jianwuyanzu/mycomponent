@@ -8,13 +8,13 @@
         <div class="sliderContainer" ref="sliderContainer"
                                      @mousemove="handleDragMove($event)"
                                      @touchmove="handleDragMove($event)"
-                                     @mouseup="handleDragEnd($event)"
-                                     @touchend="handleDragEnd($event)"
                                      @mouseout="handleDragOut($event)">
             <div class="sliderMask" ref="sliderMask" :class="{sliderMask_fail: fail, sliderMask_success: success}">
                 <div class="slider" ref="slider" :class="{slider_fail: fail, slider_success: success}"
                                     @mousedown="handleDragStart($event)"
-                                    @touchstart="handleDragStart($event)">
+                                    @touchstart="handleDragStart($event)"
+                                    @mouseup="handleDragEnd($event)"
+                                    @touchend="handleDragEnd($event)">
                     <i class="fa" :class="{'fa-long-arrow-right': !fail && !success, 'fa-times': fail, 'fa-check': success}"></i>
                 </div>
             </div>
@@ -24,7 +24,6 @@
 </template>
 
 <script>
-import { setTimeout } from 'timers';
 const l = 42, // 滑块边长
     r = 9, // 滑块半径
     PI = Math.PI
@@ -132,8 +131,10 @@ export default {
         },
         // 鼠标或手指抬起事件
         handleDragEnd(e){
-            this.isMouseDown = false;
-            this.panduan();
+            if(this.isMouseDown){
+                this.isMouseDown = false;
+                this.panduan();
+            }
         },
         // 鼠标或手指离开事件
         handleDragOut(e){
