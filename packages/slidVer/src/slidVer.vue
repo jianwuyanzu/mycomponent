@@ -1,5 +1,8 @@
 <template>
     <div class="slidVER">
+        <div class="loading" v-if="showLoad">
+            <i class="fa fa-spinner fa-spin"></i>
+        </div>
         <div class="sliderImage" v-if="type == 'slid_image'">
             <i class="refresh fa fa-refresh" @click="reset()"></i>
             <canvas ref="canvas_img"></canvas>
@@ -97,6 +100,7 @@ export default {
     },
     data(){
         return{
+            showLoad: false,
             isMouseDown: false,
             fail: false,
             success: false,
@@ -181,6 +185,7 @@ export default {
         },
         // 绘制图片
         initImg(){
+            this.showLoad = true;
             let w = this.$refs.sliderContainer.clientWidth;
             let canvas = this.$refs.canvas_img;
             let canvasCtx = this.$refs.canvas_img.getContext('2d');
@@ -204,6 +209,7 @@ export default {
                 const ImageData = blockCtx.getImageData(this.x - 3, y, L, L);
                 block.width = L;
                 blockCtx.putImageData(ImageData, 0, y);
+                this.showLoad = false;
             }, (data)=>{
                 this.initImg();
             })
@@ -222,6 +228,23 @@ export default {
     // min-width: 310px;
     margin: 0 auto;
     position: relative;
+    .loading{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 999;
+        background-color: rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #ffffff;
+        >i{
+            font-size: 25px;
+        }
+    }
     .sliderImage{
         width: 100%;
         position: relative;
