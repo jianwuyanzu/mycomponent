@@ -102,6 +102,7 @@ export default {
         },
         // 页面初始化动画
         beforeAnimate(){
+            // console.log('beforeAnimate',gameStart)
             this.createEnemy(enemyCount);
             (function animate() {
                 if (gameStart) return;
@@ -230,10 +231,14 @@ export default {
         }
     },
     mounted(){
+        // console.log('mounted')
+        gameStart = false;
         this.mapInit();
         this.beforeAnimate();
     },
     destroyed(){
+        // console.log('destroyed')
+        gameStart = false;
         cancelRaf(animationID);
     }
     

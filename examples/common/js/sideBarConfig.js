@@ -27,6 +27,10 @@ let sideBar = [
                 title: '粒子逃脱',
                 name: 'escape',
                 path: '/layout/h5GAME/escape'
+            },{
+                title: '五子棋',
+                name: 'Gobang',
+                path: '/layout/h5GAME/Gobang'
             }
         ]
     },

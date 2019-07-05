@@ -1,9 +1,9 @@
 <template>
-    <div class="ESCAPE">
-        <el-card class="escape-card">
+    <div class="Gobang">
+        <el-card class="Gobang-card">
             <div slot="header">
-                <span class="FS18">粒子逃脱(escape)</span>
-                <el-button style="float: right; padding: 3px 0" type="text" @click="escapeModal = true;">示例</el-button>
+                <span class="FS18">五子棋(Gobang)</span>
+                <el-button style="float: right; padding: 3px 0" type="text" @click="GobangModal = true;">示例</el-button>
             </div>
             <div>
                 <h3>Attributes</h3>
@@ -24,13 +24,16 @@
             </div>
         </el-card>
 
-        <el-dialog title="示例" :visible.sync="escapeModal" :fullscreen="true">
-            <div class="escapeModal">
-                <escape class="test"></escape>
+        <el-dialog title="示例" :visible.sync="GobangModal" :fullscreen="true">
+            <div class="GobangModal">
+                <div class="buttonGroup">
+                    <el-button type="primary" size="small" @click="reset">重置</el-button>
+                </div>
+                <Gobang class="test" ref="gobang"></Gobang>
             </div>
             <!-- <span slot="footer" class="dialog-footer">
-                <el-button @click="escapeModal = false">取 消</el-button>
-                <el-button type="primary" @click="escapeModal = false">确 定</el-button>
+                <el-button @click="GobangModal = false">取 消</el-button>
+                <el-button type="primary" @click="GobangModal = false">确 定</el-button>
             </span> -->
         </el-dialog>
     </div>
@@ -43,27 +46,35 @@ export default {
         return {
             attributesList: attributesList,
             eventsList: eventsList,
-            escapeModal: false,
+            GobangModal: false,
+        }
+    },
+    methods: {
+        reset(){
+            this.$refs.gobang.initGame();
         }
     }
 }
 </script>
 
 <style lang="scss" scoped>
-.ESCAPE{
-    .escape-card{
+.Gobang{
+    .Gobang-card{
         flex: 1;
         // min-height: 500px;
     }
     .el-table{
         margin-bottom: 20px;
     }
-    .escapeModal{
+    .GobangModal{
         // height: 100%;
-        height: 550px;
+        // height: 550px;
+        .buttonGroup{
+            text-align: center;
+            margin-bottom: 20px;
+        }
         .test{
-            min-width: 333px;
-            width: 50%;
+            width: 500px;
             margin: auto;
         }
     }

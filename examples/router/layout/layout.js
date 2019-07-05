@@ -45,6 +45,13 @@ let route = [
                         meta: {
                             title: '粒子逃脱'
                         }
+                    },{
+                        path: '/layout/h5Game/Gobang',
+                        name: 'Gobang',
+                        component: () => import('@/views/layout/h5Game/Gobang/Gobang'),
+                        meta: {
+                            title: '五子棋'
+                        }
                     }
                 ]
             },
