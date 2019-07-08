@@ -13,64 +13,100 @@ let gameType = 'AI_W', gameover = false;
 let people = 'black', me = true, computer = 'white';
 // 定义二维数组存放所有落子点
 let chessBoard = [];
-for(let i=0; i<15; i++){
-    chessBoard[i] = [];
-    for(let j=0; j<15; j++){
-        chessBoard[i][j] = 0;
-    }
-}
 // 定义三维数组存放所有赢的情况
 let wins = [];
-for(let i=0; i<15; i++){
-    wins[i] = [];
-    for(let j=0; j<15; j++){
-        wins[i][j] = [];
-    }
-}
 let count = 0;
-// 横线
-for(let i=0; i<15; i++){
-	for(let j=0; j<11; j++){
-		for(let k=0; k<5; k++){
-			wins[i][j+k][count] = true;
-		}
-		count++;
-	}
-}
-// 竖线
-for(let i=0; i<15; i++){
-	for(let j=0; j<11; j++){
-		for(let k=0; k<5; k++){
-			wins[j+k][i][count] = true;
-		}
-		count++;
-	}
-}
-//斜线
-for(let i=0; i<11; i++){
-	for(let j=0; j<11; j++){
-		for(let k=0; k<5; k++){
-			wins[i+k][j+k][count] = true;
-		}
-		count++;
-	}
-}
-//反斜线
-for(let i=0; i<11; i++){
-	for(let j=14; j>3; j--){
-		for(let k=0; k<5; k++){
-			wins[i+k][j-k][count] = true;
-		}
-		count++;
-	}
-}
-console.log(count)
 // 赢法统计数组
 let peopleWin = [], computerWin = [];
-for(let i=0; i<count; i++){
-    peopleWin[i] = 0;
-    computerWin[i] = 0;
+
+let initFun = function(){
+    gameover = false;
+    me = true;
+    chessBoard = [];
+    wins = [];
+    count = 0;
+    peopleWin = [];
+    computerWin = [];
+
+    for(let i=0; i<15; i++){
+        chessBoard[i] = [];
+        for(let j=0; j<15; j++){
+            chessBoard[i][j] = 0;
+        }
+    }
+
+    for(let i=0; i<15; i++){
+        wins[i] = [];
+        for(let j=0; j<15; j++){
+            wins[i][j] = {};
+        }
+    }
+    // 横线
+    for(let i=0; i<15; i++){
+        for(let j=0; j<11; j++){
+            for(let k=0; k<5; k++){
+                wins[i][j+k][count] = true;
+            }
+            count++;
+        }
+    }
+    // 竖线
+    for(let i=0; i<15; i++){
+        for(let j=0; j<11; j++){
+            for(let k=0; k<5; k++){
+                wins[j+k][i][count] = true;
+            }
+            count++;
+        }
+    }
+    //斜线
+    for(let i=0; i<11; i++){
+        for(let j=0; j<11; j++){
+            for(let k=0; k<5; k++){
+                wins[i+k][j+k][count] = true;
+            }
+            count++;
+        }
+    }
+    //反斜线
+    for(let i=0; i<11; i++){
+        for(let j=14; j>3; j--){
+            for(let k=0; k<5; k++){
+                wins[i+k][j-k][count] = true;
+            }
+            count++;
+        }
+    }
+
+    for(let i=0; i<count; i++){
+        peopleWin[i] = 0;
+        computerWin[i] = 0;
+    }
 }
+initFun();
+// console.log(wins)
+
+// 打分函数
+let getScore = function(piece, type, x, y){
+    if(piece>0 && piece<5){
+        let score = 10;
+        if(type == computer){
+            score = 15;
+        }
+        score = score*Math.pow(piece,piece);
+
+        if(piece == 4){
+            score += 1000;
+        }else if(piece == 3){
+            score += 500;
+        }
+
+        return score;
+    }
+    return 0;
+}
+
+
 export default {
     name: 'Gobang',
     props: {
@@ -84,7 +120,9 @@ export default {
     methods: {
         // 游戏初始化
         initGame(){
+            initFun();
             switch(gameType){
+                case 'NO_AI':;
                 case 'AI_W': people = 'black'; me = true; computer = 'white';break;
                 case 'AI_B': people = 'white'; me = false; computer = 'black';break;
             }
@@ -133,6 +171,9 @@ export default {
                 }
                 if(!gameover){
                     me = !me;
+                    if(gameType != 'NO_AI'){
+                        this.computerAI();
+                    }
                 }
             }
         },
@@ -156,24 +197,26 @@ export default {
                     if(chessBoard[i][j] == 0){      // 该点无子
                         for(let k=0; k<count; k++){     // 遍历所有赢法
                             if(wins[i][j][k]){
-                                switch(peopleWin[k]){
-                                    case 1: peopleScore[i][j] += 200;
-                                    case 2: peopleScore[i][j] += 400;
-                                    case 3: peopleScore[i][j] += 2000;
-                                    case 4: peopleScore[i][j] += 10000;
-                                }
+                                // switch(peopleWin[k]){
+                                //     case 1: peopleScore[i][j] += 200;break;
+                                //     case 2: peopleScore[i][j] += 400;break;
+                                //     case 3: peopleScore[i][j] += 2000;break;
+                                //     case 4: peopleScore[i][j] += 10000;break;
+                                // }
 
-                                switch(computerWin[k]){
-                                    case 1: computerScore[i][j] += 220;
-                                    case 2: computerScore[i][j] += 420;
-                                    case 3: computerScore[i][j] += 2200;
-                                    case 4: computerScore[i][j] += 20000;
-                                }
+                                // switch(computerWin[k]){
+                                //     case 1: computerScore[i][j] += 220;break;
+                                //     case 2: computerScore[i][j] += 420;break;
+                                //     case 3: computerScore[i][j] += 4000;break;
+                                //     case 4: computerScore[i][j] += 20000;break;
+                                // }
+                                peopleScore[i][j] += getScore(peopleWin[k], people, i, j);
+                                computerScore[i][j] += getScore(computerWin[k], computer, i, j);
                             }
                         }
                         // 判断电脑落子的最佳处
                         if(peopleScore[i][j] > max){
-                            max = myScore[i][j];
+                            max = peopleScore[i][j];
                             u = i;
                             v = j;
                         }else if(peopleScore[i][j] == max){
@@ -195,6 +238,26 @@ export default {
                         }
                     }
                 }
+            }
+            // console.log(computerScore)
+            // console.log(peopleScore)
+            // debugger
+            this.oneStep(u, v, me);
+            chessBoard[u][v] = computer;
+
+            for(let k=0; k<count; k++){
+                // debugger
+                if(wins[u][v][k]){
+                    computerWin[k]++;
+                    peopleWin[k] = 6;
+                    if(computerWin[k] == 5){
+                        console.log(`${computer} win`);
+                        gameover = true;
+                    }
+                }
+            }
+            if(!gameover){
+                me = !me;
             }
         }
     },

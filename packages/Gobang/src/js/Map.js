@@ -33,6 +33,7 @@ class Map {
     }
     // 渲染棋子
     render_piece(i, j, me){
+        // console.log(i, j, me)
         let w = this.width/15;
 
         this.ctx.beginPath();
