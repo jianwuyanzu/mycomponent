@@ -74,8 +74,9 @@ export default {
             margin-bottom: 20px;
         }
         .test{
-            width: 500px;
+            width: 100%;
             margin: auto;
+            -webkit-tap-highlight-color:transparent;
         }
     }
 }
