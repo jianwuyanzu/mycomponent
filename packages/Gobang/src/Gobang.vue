@@ -6,6 +6,7 @@
 
 <script>
 import map from './js/Map'
+import scorePoint from './js/evaluate_point'
 
 // 游戏模式 默认ai白子
 let gameType = 'AI_W', gameover = false;
@@ -210,9 +211,13 @@ export default {
                                 //     case 3: computerScore[i][j] += 4000;break;
                                 //     case 4: computerScore[i][j] += 20000;break;
                                 // }
-                                peopleScore[i][j] += getScore(peopleWin[k], people, i, j);
-                                computerScore[i][j] += getScore(computerWin[k], computer, i, j);
+                                // peopleScore[i][j] += getScore(peopleWin[k], people, i, j);
+                                // computerScore[i][j] += getScore(computerWin[k], computer, i, j);
+                                peopleScore[i][j] = scorePoint(i, j, people, chessBoard);
+                                computerScore[i][j] = scorePoint(i, j, computer, chessBoard);
                             }
+                            // peopleScore[i][j] = scorePoint(i, j, people, chessBoard);
+                            // computerScore[i][j] = scorePoint(i, j, computer, chessBoard);
                         }
                         // 判断电脑落子的最佳处
                         if(peopleScore[i][j] > max){
@@ -225,7 +230,6 @@ export default {
                                 v = j;
                             }
                         }
-
                         if(computerScore[i][j] > max){
                             max = computerScore[i][j];
                             u = i;
