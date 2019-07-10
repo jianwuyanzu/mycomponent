@@ -22,6 +22,7 @@ class Map {
         this.ctx.strokeStyle = '#aaa';
         
         for(let i=0; i<15; i++){
+            this.ctx.beginPath();
             this.ctx.moveTo(w/2, w/2 + i*w);
             this.ctx.lineTo(this.width - w/2, w/2 + i*w);
             this.ctx.stroke();
@@ -35,7 +36,7 @@ class Map {
     render_piece(i, j, me){
         // console.log(i, j, me)
         let w = this.width/15;
-        this.ctx.lineWidth = 0.5;
+        // this.ctx.lineWidth = 0.5;
 
         this.ctx.beginPath();
         this.ctx.arc(w/2 + i*w, w/2 + j*w, w/2 - 2, 0, 2 * Math.PI);

@@ -46,7 +46,7 @@ export default {
         return {
             attributesList: attributesList,
             eventsList: eventsList,
-            GobangModal: false,
+            GobangModal: true,
         }
     },
     methods: {
@@ -75,6 +75,7 @@ export default {
         }
         .test{
             width: 100%;
+            max-width: 500px;
             margin: auto;
             -webkit-tap-highlight-color:transparent;
         }
