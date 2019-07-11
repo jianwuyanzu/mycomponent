@@ -230,22 +230,22 @@ let countToScore = function(count, block, empty){
     if(empty <= 0){
         let add = 0;
         if(empty == -1){
-            add = 10;
+            add = 0;
         }
         if(count >= 5) return score.FIVE;
         if(block == 0){
             switch(count){
-                case 1: return score.ONE + add;
-                case 2: return score.TWO + add;
-                case 3: return score.THREE + add;
+                case 1: return score.ONE;
+                case 2: return score.TWO;
+                case 3: return score.THREE;
                 case 4: return score.FOUR + add;
             }
         }
         if(block == 1){
             switch(count){
-                case 1: return score.BLOCKED_ONE + add;
-                case 2: return score.BLOCKED_TWO + add;
-                case 3: return score.BLOCKED_THREE + add;
+                case 1: return score.BLOCKED_ONE;
+                case 2: return score.BLOCKED_TWO;
+                case 3: return score.BLOCKED_THREE;
                 case 4: return score.BLOCKED_FOUR + add;
             }
         }

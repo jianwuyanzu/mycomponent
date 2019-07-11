@@ -121,7 +121,7 @@ let hasNeighbor = function(x, y, distance, count){
 }
 // 生成所有可以落子的点
 let gen = function(role){
-    let fives = [], computerfours = [], peoplefours = [], computerblockedfours = [], peopleblockedfours = [], computertwothrees = [], peopletwothrees = [], computerthrees = [], peoplethrees = [], computertwos = [], peopleputertwos = [], neighbors = [];
+    let fives = [], computerfours = [], peoplefours = [], computerblockedfours = [], peopleblockedfours = [], computertwothrees = [], peopletwothrees = [], computerthrees = [], peoplethrees = [], computertwos = [], peopletwos = [], neighbors = [];
     for(let i = 0; i < 15; i++){
         for(let j = 0; j < 15; j++){
             if(chessBoard[i][j] == 0){
@@ -162,7 +162,7 @@ let gen = function(role){
                 }else if(scoreComputer >= S.TWO){
                     computertwos.push(p);
                 }else if(scorePeople >= S.TWO){
-                    peopleputertwos.push(p);
+                    peopletwos.push(p);
                 }else if(scoreComputer >= S.BLOCKED_ONE || scorePeople >= S.BLOCKED_ONE){
                     // console.log(p)
                     neighbors.push(p);
@@ -170,6 +170,7 @@ let gen = function(role){
             }
         }
     }
+    console.log(fives, computerfours, peoplefours, computerblockedfours, peopleblockedfours, computertwothrees, peopletwothrees,computerthrees, peoplethrees, computertwos, peopletwos, neighbors)
 
     // 如果有五，必杀
     if(fives.length) return fives;
@@ -192,12 +193,12 @@ let gen = function(role){
         result = [...peopletwothrees, ...computertwothrees, ...peopleblockedfours, ...computerblockedfours, ...peoplethrees, ...computerthrees];
     }
 
-    if(computertwothrees.length || peopletwothrees.length){
+    if(computertwothrees.length || peopletwothrees.length || computerthrees.length || peoplethrees.length){
         return result;
     }
 
-    if(computertwos.length || peopleputertwos.length){
-        result = [...result, ...computertwos, ...peopleputertwos];
+    if(computertwos.length || peopletwos.length){
+        result = [...result, ...computertwos, ...peopletwos];
     }else{
         result = [...result, ...neighbors];
     }
@@ -221,7 +222,7 @@ let evaluate = function(role){
     }
     // console.log(computerMaxScore, peopleMaxScore)
 
-    return (role == computer ? 1 : -1) * (computerMaxScore - peopleMaxScore)
+    return (computerMaxScore - peopleMaxScore)
 }
 let fixScore = function(type){
     return type;
@@ -231,7 +232,7 @@ let df = function(){
     for(let i=0; i<15; i++){
         for(let j=0; j<15; j++){
             if(chessBoard[i][j] == 0){      // 该点无子
-                if(hasNeighbor(i, j, 2, 1)){    // 该点附件有子才打分
+                if(hasNeighbor(i, j, 1, 1)){    // 该点附件有子才打分
                     peopleScore[i][j] = scorePoint(i, j, people, chessBoard);
                     computerScore[i][j] = scorePoint(i, j, computer, chessBoard);
                 }
