@@ -230,7 +230,7 @@ let countToScore = function(count, block, empty){
     if(empty <= 0){
         let add = 0;
         if(empty == -1){
-            add = 0;
+            add = 10;
         }
         if(count >= 5) return score.FIVE;
         if(block == 0){

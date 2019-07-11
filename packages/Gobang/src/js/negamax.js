@@ -1,6 +1,6 @@
 import S from "./score"
 import math from './math'
-let MAX = SCORE.FIVE*10
+let MAX = S.FIVE*10
 let MIN = -1*MAX
 
 let r = function(deep, alpha, beta, role, steps, chessBoard, gen, evaluate){
@@ -55,9 +55,9 @@ let negamax = function(candidates, role, deep, chessBoard, gen, alpha, beta, eva
 let deeping = function(candidates, role, deep, chessBoard, gen, MIN, MAX, evaluate){
 
     let bestScore;
-    for(let i=2; i<=deep; i+=2){
-        negamax(candidates, role, i, chessBoard, gen, MIN, MAX, evaluate)
-    }
+    // for(let i=2; i<=deep; i+=2){
+    //     negamax(candidates, role, i, chessBoard, gen, MIN, MAX, evaluate)
+    // }
 
     candidates.sort(function(a, b){
         return b.maxScore - a.maxScore;

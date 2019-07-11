@@ -83,7 +83,8 @@
             </div>
         </div>
         <div class="main main_jl" :class="{active: homeType}">
-            <el-button type="primary" :disabled="true">下载简历(pdf)</el-button>
+            <!-- <a href="./img/jl.pdf" class="el-button">下载简历(pdf)</a> -->
+            <el-button title="后台服务器挂了" type="primary" :disabled="true" @click="download">下载简历(pdf)</el-button>
             <el-button type="primary" @click="goLayout">轮子厂</el-button>
         </div>
     </div>
@@ -100,6 +101,11 @@ export default {
         }
     },
     methods: {
+        download(){
+            // location.href = './jl.pdf'
+            // let a = require('./img/jl.pdf');
+            // console.log(a)
+        },
         goLayout(){
             this.$router.push({
                 name: 'layout'
@@ -165,9 +171,9 @@ export default {
                     text-align: left;
                     font-size: 25px;
                 }
-                &.jbxx{
+                // &.jbxx{
 
-                }
+                // }
             }
             .myInfo{
                 display: flex;
@@ -200,9 +206,13 @@ export default {
                 }
             }
         }
-        &.main_jl{
-            
-        }
+        // &.main_jl{
+        //     .el-button{
+        //         background-color: #409EFF;
+        //         border-color: #409EFF;
+        //         color: #fff;
+        //     }
+        // }
     }
 }
 </style>
