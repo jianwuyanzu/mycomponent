@@ -46,7 +46,7 @@ export default {
         return {
             attributesList: attributesList,
             eventsList: eventsList,
-            GobangModal: true,
+            GobangModal: false,
         }
     },
     methods: {
