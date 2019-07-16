@@ -50,6 +50,7 @@ class Player extends Point {
             // console.log(e.clientX, e.clientY)
             // self.moveTo(e.clientX, e.clientY);
             self.moveTo(e.clientX - left, e.clientY - top);
+            e.preventDefault();
         });
 
         canvasElement.addEventListener('touchmove', (e) => {
@@ -57,6 +58,7 @@ class Player extends Point {
             // console.log(e.clientX, e.clientY)
             // self.moveTo(e.clientX, e.clientY);
             self.moveTo(a.clientX - left, a.clientY - top);
+            e.preventDefault();
         });
     }
     // 设置粒子位置
